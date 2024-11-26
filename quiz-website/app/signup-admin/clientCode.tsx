@@ -53,9 +53,9 @@ function SignupForm() {
 			.then((res) => {
 				if (res?.success) {
 					setButtonText("Redirecting..");
-					router.push("/");
+					router.push("/login");
 				} else {
-					setButtonText("Login");
+					setButtonText("Sign Up");
 					res?.errors?.map((error) =>
 						setErrors((prev) => ({
 							...prev,

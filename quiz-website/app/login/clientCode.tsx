@@ -45,7 +45,7 @@ function LoginForm() {
     handleLogin(loginData).then(res=>{
       if(res?.success){
         setButtonText("Redirecting..");
-        router.push('/Bidder');
+        router.push('/');
       }else{
         setButtonText("Login");
         res?.errors?.map(error=>setErrors(prev=>({...prev, [error.path[0]]:`Invalid ${error.path[0]}` })))
