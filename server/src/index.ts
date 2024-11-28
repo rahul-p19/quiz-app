@@ -15,44 +15,42 @@ const corsOptions = {
 const app = express();
 const port = 3001;
 
+var currentQuestion:Question;
+
 app.use(cors(corsOptions));
 
 const users:Response[] = [];
-let quizPaused:boolean = false;
 
-function broadcast(users:Response[], questions: Question[], ctr:number){
-    // let ctr=0;
-    const interval = setInterval(()=>{
-        if(ctr>=questions.length || quizPaused){
-            clearInterval(interval);
-            return;
-        }
-        const questionData = JSON.stringify(questions[ctr]);
+function broadcast(users:Response[], question: Question){
+
+    // broadcasting current question to all users
+        currentQuestion = question;
         users.forEach(res=>{
-            res.write("data: "+`${questionData}\n\n`);
+            res.write("data: "+`${JSON.stringify(question)}\n\n`);
         })
-        ++ctr;
-    },3000)
 }
 
-app.get('/', (req:Request,res:Response) => {
-   res.send("Hello!");
-})
-
 app.get("/questions", (req:Request, res:Response)=>{
+
+    // adding all users to stream
+    //console.log(currentQuestion);
     res.setHeader("Content-Type","text/event-stream");
 
+    if(currentQuestion)
+        res.write("data: "+`${JSON.stringify(currentQuestion)}\n\n`);
+    
     users.push(res);
 })
 
 app.get("/start", async (req:Request, resp:Response)=>{
     try {
-        // const questions = await prisma.question.findMany();
-
+        const ind = typeof(req.query.ind) == "string"? parseInt(req.query.ind) : 0;
+        currentQuestion = questions[ind];
         console.log("Users Length: ",users.length);
-        console.log("starting broadcast");
+        console.log("Sending question");
 
-        broadcast(users,questions,0);
+        //console.log(currentQuestion);
+        broadcast(users,questions[ind]);
         resp.send("Broadcast Started");
     } catch (error) {
         resp.send(`Error occured.\n${error}`);
@@ -91,39 +89,6 @@ app.get("/stop",(req:Request, resp:Response)=>{
         users.length = 0;
     } catch (error) {
         resp.send(`An error occured.\n${error}`);
-    }
-})
-
-app.get("/pause",(req:Request, res:Response)=>{
-    try {
-        quizPaused = false;
-        res.send("Pausing quiz.");
-    } catch (error) {
-        console.log(error);
-        res.send(`Error occured.\n${error}`);
-    }
-})
-
-app.get("/resume",async (req:Request, res:Response)=>{
-    try {
-        let ind;
-        if(typeof(req.query.id)==="string")
-            ind = parseInt(req.query.id);
-        else
-            ind=0;
-
-        // const questions = await prisma.question.findMany({
-        //     where: {
-        //         questionId: {
-        //             gte: ind
-        //         }
-        //     }
-        // });
-
-        broadcast(users,questions,ind);
-    } catch (error) {
-        console.log(error);
-        res.send(`Error occured.\n${error}`)
     }
 })
 

@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
+const questions_1 = require("./questions");
 const corsOptions = {
     origin: '*',
     credentials: true,
@@ -23,36 +24,32 @@ const corsOptions = {
 };
 const app = (0, express_1.default)();
 const port = 3001;
+var currentQuestion;
 app.use((0, cors_1.default)(corsOptions));
 const users = [];
-let quizPaused = false;
-function broadcast(users, questions, ctr) {
-    // let ctr=0;
-    const interval = setInterval(() => {
-        if (ctr >= questions.length || quizPaused) {
-            clearInterval(interval);
-            return;
-        }
-        const questionData = JSON.stringify(questions[ctr]);
-        users.forEach(res => {
-            res.write("data: " + `${questionData}\n\n`);
-        });
-        ++ctr;
-    }, 10000);
+function broadcast(users, question) {
+    // broadcasting current question to all users
+    currentQuestion = question;
+    users.forEach(res => {
+        res.write("data: " + `${JSON.stringify(question)}\n\n`);
+    });
 }
-app.get('/', (req, res) => {
-    res.send("Hello!");
-});
 app.get("/questions", (req, res) => {
+    // adding all users to stream
+    console.log(currentQuestion);
     res.setHeader("Content-Type", "text/event-stream");
+    if (currentQuestion)
+        res.write("data: " + `${JSON.stringify(currentQuestion)}\n\n`);
     users.push(res);
 });
 app.get("/start", (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const questions = yield prisma.question.findMany();
+        const ind = typeof (req.query.ind) == "string" ? parseInt(req.query.ind) : 0;
+        currentQuestion = questions_1.questions[ind];
         console.log("Users Length: ", users.length);
-        console.log("starting broadcast");
-        broadcast(users, questions, 0);
+        console.log("Sending question");
+        console.log(currentQuestion);
+        broadcast(users, questions_1.questions[ind]);
         resp.send("Broadcast Started");
     }
     catch (error) {
@@ -94,37 +91,6 @@ app.get("/stop", (req, resp) => {
         resp.send(`An error occured.\n${error}`);
     }
 });
-app.get("/pause", (req, res) => {
-    try {
-        quizPaused = false;
-        res.send("Pausing quiz.");
-    }
-    catch (error) {
-        console.log(error);
-        res.send(`Error occured.\n${error}`);
-    }
-});
-app.get("/resume", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        let ind;
-        if (typeof (req.query.id) === "string")
-            ind = parseInt(req.query.id);
-        else
-            ind = 0;
-        const questions = yield prisma.question.findMany({
-            where: {
-                questionId: {
-                    gte: ind
-                }
-            }
-        });
-        broadcast(users, questions, ind);
-    }
-    catch (error) {
-        console.log(error);
-        res.send(`Error occured.\n${error}`);
-    }
-}));
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });
