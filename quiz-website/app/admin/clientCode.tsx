@@ -5,7 +5,7 @@ const setQuestion = (questionNo:string) => {
 	try {
 		const ind = parseInt(questionNo);
 		if(!ind) throw "Invalid question number";
-		fetch(`http://localhost:3001/start?ind=${ind}`, {})
+		fetch(`${process.env.BACKEND_URL}/start?ind=${ind}`, {})
 		.then(() => console.log("quiz started"))
 		.catch((err) => console.error(err));
 	} catch (err) {
@@ -14,19 +14,19 @@ const setQuestion = (questionNo:string) => {
 };
 
 const allowNavigation = () => {
-	fetch(`http://localhost:3001/allowNavigation`, {})
+	fetch(`${process.env.BACKEND_URL}/allowNavigation`, {})
 		.then(() => console.log("allowed navigation"))
 		.catch((err) => console.error(err));
 };
 
 const stopNavigation = () => {
-	fetch(`http://localhost:3001/stopNavigation`, {})
+	fetch(`${process.env.BACKEND_URL}/stopNavigation`, {})
 		.then(() => console.log("stopped navigation"))
 		.catch((err) => console.error(err));
 };
 
 const stopQuiz = () => {
-	fetch("http://localhost:3001/stop", {})
+	fetch(`${process.env.BACKEND_URL}/stop`, {})
 		.then(() => console.log("quiz stopped"))
 		.catch((err) => console.error(err));
 };

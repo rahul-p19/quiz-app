@@ -18,7 +18,8 @@ export default function ClientCode() {
 	const [questionLive, setQuestionLive] = useState<boolean>(false);
 
 	useEffect(() => {
-		const sse = new EventSource("http://localhost:3001/questions");
+		// const sse = new EventSource("http://localhost:3001/questions");
+		const sse = new EventSource(`${process.env.BACKEND_URL}/questions`);
 
 		sse.onmessage = (ev: MessageEvent) => {
 			console.table(ev.data);
