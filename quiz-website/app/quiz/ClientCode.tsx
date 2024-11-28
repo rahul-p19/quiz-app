@@ -1,11 +1,11 @@
 "use client";
-import { Question } from "@prisma/client";
 import React, { useState, useEffect } from "react";
 import QuestionForm from "./QuestionForm";
+import { QuestionType } from "@/schemas";
 
 export default function ClientCode() {
-	const [currentQuestion, setCurrentQuestion] = useState<Question>({
-		questionId: "",
+	const [currentQuestion, setCurrentQuestion] = useState<QuestionType>({
+		questionId: 0,
 		optiona: "",
 		optionb: "",
 		optionc: "",

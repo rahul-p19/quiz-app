@@ -1,7 +1,7 @@
 import React from 'react'
-import { Question } from '@prisma/client'
+import { QuestionType } from '@/schemas';
 
-function QuestionForm({question}:{question:Question}) {
+function QuestionForm({question}:{question:QuestionType}) {
   return (
     <div>
         <h1>{question.statement}</h1>
