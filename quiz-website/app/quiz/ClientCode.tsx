@@ -19,7 +19,7 @@ export default function ClientCode() {
 
 	useEffect(() => {
 		// const sse = new EventSource("http://localhost:3001/questions");
-		const sse = new EventSource(`//${process.env.NEXT_PUBLIC_BACKEND_URL}/questions`);
+		const sse = new EventSource(`${process.env.NEXT_PUBLIC_BACKEND_URL}/questions`);
 
 		sse.onmessage = (ev: MessageEvent) => {
 			console.table(ev.data);
