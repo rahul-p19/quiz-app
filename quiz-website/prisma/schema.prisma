@@ -13,45 +13,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum UserRole{
+enum UserRole {
   USER
   ADMIN
 }
 
-enum AnswerType{
-  a 
+enum AnswerType {
+  a
   b
   c
   d
 }
 
-model User{
-  id String @id @default(cuid())
-  name String
-  email String
+model User {
+  id       String   @id @default(cuid())
+  name     String
+  email    String
   password String
-  role UserRole @default(USER)
-  score Int @default(0)
-  answers Answer[]
+  role     UserRole @default(USER)
+  score    Int      @default(0)
+  answers  Answer[]
 }
 
-model Answer{
-  answerId String @id @default(cuid())
+model Answer {
+  answerId       String     @id @default(cuid())
   selectedOption AnswerType
-  score Int
-  userId String
-  user User @relation(fields: [userId], references: [id])
-  questionId Int
-  question Question @relation(fields: [questionId], references: [questionId])
+  userId         String
+  user           User       @relation(fields: [userId], references: [id])
+  questionId     Int
+  question       Question   @relation(fields: [questionId], references: [questionId])
 }
 
-model Question{
-  questionId Int @id @default(autoincrement())
-  statement String
-  optiona String
-  optionb String
-  optionc String
-  optiond String
+model Question {
+  questionId    Int         @id @default(autoincrement())
+  statement     String
+  optiona       String
+  optionb       String
+  optionc       String
+  optiond       String
   correctOption AnswerType?
-  answers Answer[]
+  answers       Answer[]
+  marks         Int
 }
