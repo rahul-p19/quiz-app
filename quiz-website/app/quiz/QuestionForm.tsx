@@ -4,9 +4,9 @@ import { QuizContext } from "./QuizContext";
 
 export default function QuestionForm({ question }: { question: QuestionType }) {
   const context = useContext(QuizContext);
-  if (!context) return;
-  const answers = context.answers;
-  const setAnswers = context.setAnswers;
+  //if (!context) return;
+  const answers = context!.answers;
+  const setAnswers = context!.setAnswers;
 
   const [backgrounds, setBackgrounds] = useState<{ a: string, b: string, c: string, d: string }>({
     a: 'bg-white',
@@ -58,7 +58,7 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
         })
         break;
     }
-  }, [question]);
+  }, [question, answers]);
 
   return (
     <div>
