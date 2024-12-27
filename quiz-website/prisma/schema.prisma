@@ -18,40 +18,34 @@ enum UserRole {
   ADMIN
 }
 
-enum AnswerType {
-  a
-  b
-  c
-  d
-}
-
 model User {
-  id       String   @id @default(cuid())
-  name     String
-  email    String
-  password String
-  role     UserRole @default(USER)
-  score    Int      @default(0)
-  answers  Answer[]
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  password      String
+  role          UserRole @default(USER)
+  score         Int      @default(0)
+  answers       Answer[]
+  quizSubmitted Boolean  @default(false)
 }
 
 model Answer {
-  answerId       String     @id @default(cuid())
-  selectedOption AnswerType
+  answerId       String   @id @default(cuid())
+  selectedOption String
   userId         String
-  user           User       @relation(fields: [userId], references: [id])
+  user           User     @relation(fields: [userId], references: [id])
   questionId     Int
-  question       Question   @relation(fields: [questionId], references: [questionId])
+  question       Question @relation(fields: [questionId], references: [questionId])
 }
 
 model Question {
-  questionId    Int         @id @default(autoincrement())
+  questionId    Int      @id @default(autoincrement())
   statement     String
   optiona       String
   optionb       String
   optionc       String
   optiond       String
-  correctOption AnswerType?
+  correctOption String   @default("a")
   answers       Answer[]
   marks         Int
 }

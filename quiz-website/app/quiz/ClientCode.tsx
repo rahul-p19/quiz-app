@@ -5,7 +5,7 @@ import QuestionForm from "./QuestionForm";
 import { QuizContext } from "./QuizContext";
 import Navbar from "./Navbar";
 
-export default function ClientCode() {
+export default function ClientCode({ userId }: { userId: string }) {
   const [currentQuestion, setCurrentQuestion] = useState<QuestionType>({
     questionId: 0,
     optiona: "",
@@ -28,6 +28,14 @@ export default function ClientCode() {
     if (localAnswers !== "")
       setAnswers(JSON.parse(localAnswers));
 
+    const localAllowNav = localStorage.getItem("allowNav") ?? "false";
+    if (localAllowNav !== "")
+      setAllowNav(JSON.parse(localAllowNav));
+
+    const localQuestionLive = localStorage.getItem("questionLive") ?? "false";
+    if (localQuestionLive !== "")
+      setQuestionLive(() => JSON.parse(localQuestionLive) === "true" ? true : false);
+
     // const sse = new EventSource("http://localhost:3001/questions");
     const sse = new EventSource(`${process.env.NEXT_PUBLIC_BACKEND_URL}/questions`);
 
@@ -35,16 +43,37 @@ export default function ClientCode() {
       //console.table(ev.data);
       if (ev.data === "close") {
         setQuestionLive(false);
+        localStorage.setItem("questionLive", "false");
         console.log("Closing Connection to Quiz");
         sse.close();
-      } else if (ev.data === "allowNavigation") {
-        //setQuestionLive(false);
+      }
+
+      else if (ev.data === "allowNavigation") {
+        setQuestionLive(true);
+        localStorage.setItem("questionLive", "true");
         setAllowNav(true);
-      } else if (ev.data === "stopNavigation") {
+        localStorage.setItem("allowNav", "true");
+      }
+
+      else if (ev.data === "stopNavigation") {
         setAllowNav(false);
-      } else {
+        localStorage.setItem("allowNav", "false");
+      }
+
+      else if (ev.data === "stopQuestions") {
+        setQuestionLive(false);
+        localStorage.setItem("questionLive", "false");
+      }
+
+      else if (ev.data === "allowQuestions") {
+        setQuestionLive(true);
+        localStorage.setItem("questionLive", "true");
+      }
+
+      else {
         setCurrentQuestion(JSON.parse(ev.data));
         setQuestionLive(true);
+        localStorage.setItem("questionLive", "true");
       }
     };
   }, []);
@@ -52,9 +81,9 @@ export default function ClientCode() {
   return (
     <>
       <div>
-        <QuizContext.Provider value={{ answers, setAnswers }}>
+        <QuizContext.Provider value={{ answers, setAnswers, setQuestion: setCurrentQuestion }}>
           <h1>Welcome to IEEE JUSB Quiz</h1>
-          {allowNav && <Navbar answers={answers} />}
+          {allowNav && <Navbar answers={answers} userId={userId} />}
           {questionLive &&
             <QuestionForm question={currentQuestion} />}
         </QuizContext.Provider>
