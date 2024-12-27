@@ -1,5 +1,10 @@
 "use client";
+//import { QuestionType } from "@/schemas";
 import React, { useState } from "react";
+
+/*const addQuestion = (questionData: QuestionType) => {
+  console.log(questionData);
+};*/
 
 const setQuestion = (questionNo: string) => {
   try {
@@ -18,16 +23,44 @@ const setQuestion = (questionNo: string) => {
 };
 
 const allowNavigation = () => {
-  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/allowNavigation`, {})
+  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/allowNavigation`, {
+    headers: {
+      "adminauth": "colepalmer"
+    }
+  })
     .then(() => console.log("allowed navigation"))
     .catch((err) => console.error(err));
 };
 
 const stopNavigation = () => {
-  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stopNavigation`, {})
+  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stopNavigation`, {
+    headers: {
+      "adminauth": "colepalmer"
+    }
+  })
     .then(() => console.log("stopped navigation"))
     .catch((err) => console.error(err));
+}
+
+const allowQuestions = () => {
+  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/allowQuestions`, {
+    headers: {
+      "adminauth": "colepalmer"
+    }
+  })
+    .then(() => console.log("allowed questions"))
+    .catch((err) => console.error(err));
 };
+
+const stopQuestions = () => {
+  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stopQuestions`, {
+    headers: {
+      "adminauth": "colepalmer"
+    }
+  })
+    .then(() => console.log("stopped questions"))
+    .catch((err) => console.error(err));
+};;
 
 const stopQuiz = () => {
   fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stop`, {
@@ -61,6 +94,10 @@ function AdminControls() {
       <button onClick={allowNavigation}>Allow navigation</button>
 
       <button onClick={stopNavigation}>Stop navigation</button>
+
+      <button onClick={allowQuestions}>Allow questions</button>
+
+      <button onClick={stopQuestions}>Stop questions</button>
 
       <button onClick={stopQuiz} className="text-white bg-red-500 w-fit">Stop quiz</button>
     </div>

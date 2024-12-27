@@ -4,6 +4,7 @@ import { QuestionType } from "@/schemas";
 import QuestionForm from "./QuestionForm";
 import { QuizContext } from "./QuizContext";
 import Navbar from "./Navbar";
+import Logout from "@/components/Logout";
 
 export default function ClientCode({ userId }: { userId: string }) {
   const [currentQuestion, setCurrentQuestion] = useState<QuestionType>({
@@ -82,7 +83,10 @@ export default function ClientCode({ userId }: { userId: string }) {
     <>
       <div>
         <QuizContext.Provider value={{ answers, setAnswers, setQuestion: setCurrentQuestion }}>
-          <h1>Welcome to IEEE JUSB Quiz</h1>
+          <div>
+            <h1>Welcome to IEEE JUSB Quiz</h1>
+            <Logout />
+          </div>
           {allowNav && <Navbar answers={answers} userId={userId} />}
           {questionLive &&
             <QuestionForm question={currentQuestion} />}

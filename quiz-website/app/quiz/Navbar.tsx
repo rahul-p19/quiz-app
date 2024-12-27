@@ -16,7 +16,7 @@ function Navbar({ answers, userId }: { answers: string[], userId: string }) {
     getAllQuestions()
       .then(res => {
         console.log(res);
-        //setAllQuestions(res);
+        setAllQuestions(res);
       });
   }, [])
 

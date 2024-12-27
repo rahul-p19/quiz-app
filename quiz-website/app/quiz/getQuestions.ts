@@ -10,5 +10,5 @@ const getQuestions = async () => {
 
 export async function getAllQuestions() {
   const data = unstable_cache(getQuestions);
-  return data;
+  return data();
 }
