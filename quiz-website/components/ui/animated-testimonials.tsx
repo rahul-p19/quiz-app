@@ -43,10 +43,11 @@ export const AnimatedTestimonials = ({
     return Math.floor(Math.random() * 21) - 10;
   };
   return (
-    <div className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20">
-      <div className="relative grid grid-cols-1 md:grid-cols-2  gap-20">
-        <div>
-          <div className="relative h-80 w-full">
+    
+    <div className="w-[100%] md:h-[90%] mx-auto antialiased font-sans px-4   md:px-8 lg:px-12 py-20 grid grid-cols-2">
+      <div className="left relative grid grid-cols-1 bg-green-600 py-10 ">
+        
+          <div className="image relative h-60 w-[50%] mx-auto ">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -90,9 +91,9 @@ export const AnimatedTestimonials = ({
                 </motion.div>
               ))}
             </AnimatePresence>
-          </div>
+          
         </div>
-        <div className="flex justify-between flex-col py-4">
+        <div className="name+button flex justify-between flex-col mx-auto  pb-8">
           <motion.div
             key={active}
             initial={{
@@ -115,7 +116,7 @@ export const AnimatedTestimonials = ({
             <h3 className="text-2xl font-bold dark:text-white text-black">
               {testimonials[active].name}
             </h3>
-            <p className="text-sm text-gray-500 dark:text-neutral-500">
+            {/* <p className="text-sm text-gray-500 dark:text-neutral-500">
               {testimonials[active].designation}
             </p>
             <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
@@ -142,9 +143,9 @@ export const AnimatedTestimonials = ({
                   {word}&nbsp;
                 </motion.span>
               ))}
-            </motion.p>
+            </motion.p> */}
           </motion.div>
-          <div className="flex gap-4 pt-12 md:pt-0">
+          <div className=" button flex justify-center gap-4 pt-12 md:pt-0 pb-10">
             <button
               onClick={handlePrev}
               className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
@@ -161,6 +162,13 @@ export const AnimatedTestimonials = ({
             </button>
           </div>
         </div>
+      </div>
+      <div className="right bg-blue-600 p-10"> 
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, sequi? Id adipisci repudiandae consequatur cupiditate eveniet voluptatum numquam aspernatur debitis libero possimus quos, iure, dolore doloremque ab ex quasi suscipit!
+        Alias est natus possimus eveniet illum tempore doloremque magni dolorum repellat excepturi totam suscipit ut molestias illo, quidem culpa aut, rem, voluptate laudantium? Natus quae sunt, animi earum non neque.
+        Rerum molestias quidem nisi aliquam impedit, nostrum expedita repellat aspernatur. Saepe libero quod iste vero quaerat qui facilis amet esse, possimus placeat, molestias aliquam ad optio voluptatum. Nostrum, fuga ipsa?
+        Architecto vitae excepturi aliquam assumenda soluta eaque quam? Magnam omnis ullam minus voluptatem inventore in aut quas ad excepturi nobis! Rem in sint quo corrupti labore, fugit nulla libero totam.
+        Atque, id numquam odio reprehenderit deserunt dolor obcaecati rerum maxime et consectetur at quidem, incidunt nulla! Harum doloremque beatae quaerat sequi blanditiis. Dolore, modi nesciunt facilis esse dolorum similique voluptatibus!</p>
       </div>
     </div>
   );
