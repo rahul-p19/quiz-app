@@ -1,14 +1,18 @@
 import React from 'react'
-import Link from 'next/link'
-
+import { GoogleGeminiEffectDemo } from '@/components/Gemini-Signup'
+import { Home } from '@/components/Hero-section'
+import { Timelines } from '@/components/Timelines'
+import {Navbar} from '@/components/Navigation/Navbar'
 function Page() {
   return (
-    <div>
-<Link href="/login">Login</Link>
-<Link href="/signup">Signup</Link>
-
-
-    </div>
+    <>
+      <Navbar/>
+      <main>
+      <Home />
+      <Timelines/>
+      <GoogleGeminiEffectDemo />
+      </main>
+    </>
   )
 }
 
