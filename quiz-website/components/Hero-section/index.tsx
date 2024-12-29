@@ -5,7 +5,7 @@ import { StarsBackground } from "@/components/ui/stars-background";
 import { Cover } from "../ui/cover";
 export function Home() {
     return (
-        <div id="home" className="h-[40rem] rounded-md bg-[#000] flex flex-col items-center justify-center relative w-full">
+        <div id="home" className="rounded-md bg-[#000] flex flex-col items-center justify-center relative w-full h-screen">
             <h1 className="relative flex-col md:flex-row z-10 text-3xl md:text-5xl md:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-white to-white flex items-center gap-2 md:gap-8">
                 <span>Hello</span>
                 {/* <span className="text-white text-lg font-thin"></span> */}
