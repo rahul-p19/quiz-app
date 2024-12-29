@@ -44,8 +44,8 @@ export const AnimatedTestimonials = ({
   };
   return (
     
-    <div className="w-[100%] md:h-[90%] mx-auto antialiased font-sans px-4   md:px-8 lg:px-12 py-20 grid grid-cols-2">
-      <div className="left relative grid grid-cols-1 bg-green-600 py-10 ">
+    <div className="w-[100%] md:h-[90%] mx-auto antialiased font-sans px-4   md:px-8 lg:px-12 py-10 grid md:grid-cols-2">
+      <div className="left relative grid grid-cols-1  py-10 justify-center ">
         
           <div className="image relative h-60 w-[50%] mx-auto ">
             <AnimatePresence>
@@ -93,7 +93,7 @@ export const AnimatedTestimonials = ({
             </AnimatePresence>
           
         </div>
-        <div className="name+button flex justify-between flex-col mx-auto  pb-8">
+        <div className="name+button flex justify-between flex-col mx-auto pt-5 md:pt-0  md:pb-8">
           <motion.div
             key={active}
             initial={{
@@ -113,7 +113,7 @@ export const AnimatedTestimonials = ({
               ease: "easeInOut",
             }}
           >
-            <h3 className="text-2xl font-bold dark:text-white text-black">
+            <h3 className="text-2xl font-bold ">
               {testimonials[active].name}
             </h3>
             {/* <p className="text-sm text-gray-500 dark:text-neutral-500">
@@ -145,7 +145,7 @@ export const AnimatedTestimonials = ({
               ))}
             </motion.p> */}
           </motion.div>
-          <div className=" button flex justify-center gap-4 pt-12 md:pt-0 pb-10">
+          <div className=" button flex justify-center gap-4 pt-3 md:pt-0 md:pb-10">
             <button
               onClick={handlePrev}
               className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
@@ -163,7 +163,7 @@ export const AnimatedTestimonials = ({
           </div>
         </div>
       </div>
-      <div className="right bg-blue-600 p-10"> 
+      <div className="right px-5  text-center md:text-start  pb-5 md:p-10 "> 
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, sequi? Id adipisci repudiandae consequatur cupiditate eveniet voluptatum numquam aspernatur debitis libero possimus quos, iure, dolore doloremque ab ex quasi suscipit!
         Alias est natus possimus eveniet illum tempore doloremque magni dolorum repellat excepturi totam suscipit ut molestias illo, quidem culpa aut, rem, voluptate laudantium? Natus quae sunt, animi earum non neque.
         Rerum molestias quidem nisi aliquam impedit, nostrum expedita repellat aspernatur. Saepe libero quod iste vero quaerat qui facilis amet esse, possimus placeat, molestias aliquam ad optio voluptatum. Nostrum, fuga ipsa?
