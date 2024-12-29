@@ -1,3 +1,4 @@
+"use client"
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 export function About() {
@@ -38,5 +39,5 @@ export function About() {
       src: "/assets/abcs.jpg",
     }, 
   ];
-  return <AnimatedTestimonials testimonials={testimonials} />;
+  return ( <><div id="about" className="py-10"><AnimatedTestimonials testimonials={testimonials} /></div></> );
 }
