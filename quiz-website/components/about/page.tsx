@@ -39,5 +39,5 @@ export function About() {
       src: "/assets/abcs.jpg",
     }, 
   ];
-  return ( <><div id="about" className="py-10"><AnimatedTestimonials testimonials={testimonials} /></div></> );
+  return ( <><div id="about" className="py-10 bg-[#000080]"><AnimatedTestimonials testimonials={testimonials} /></div></> );
 }

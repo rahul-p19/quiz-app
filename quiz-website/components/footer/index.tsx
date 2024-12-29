@@ -102,7 +102,7 @@ export function Footer(): JSX.Element {
   };
 
   return (
-    <footer className="flex flex-col bg-gradient-to-b from-[#0A5C36] to-[#1D2E28] px-12 pt-16 pb-12">
+    <footer className="flex flex-col bg-gradient-to-b from-[#000080] to-[#0000FF] px-12 pt-16 pb-12">
       <div className="max-w-[1240px] xl:px-2vw px-5vw mx-auto">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-10">
           {/* Social Media Section */}
@@ -110,7 +110,7 @@ export function Footer(): JSX.Element {
             <h2 className="text-white mb-4 text-xl text-center sm:text-left">
               Follow us on our Socials
             </h2>
-            <div className="flex gap-x-6 text-xl text-[#82BBA7] justify-center sm:justify-normal">
+            <div className="flex gap-x-6 text-xl text-[#FFFEFA] justify-center sm:justify-normal">
               {renderSocialLinks(socialLinks)}
             </div>
           </div>
@@ -118,7 +118,7 @@ export function Footer(): JSX.Element {
           {/* Quick Links Section */}
           <div className="flex flex-col px-6">
             <h2 className="text-white text-center mb-4 text-xl">Quick Links</h2>
-            <ul className="text-[#82BBA7] flex flex-col items-center text-lg">
+            <ul className="text-[#FFFEFA] flex flex-col items-center text-lg">
               {renderQuickLinks(quickLinks)}
             </ul>
           </div>
@@ -128,7 +128,7 @@ export function Footer(): JSX.Element {
             <h2 className="text-white text-center md:text-right mb-4 text-xl">
               About IEEE JUSB
             </h2>
-            <p className="text-center md:text-right text-wrap text-[#82BBA7] text-base">
+            <p className="text-center md:text-right text-wrap text-[#FFFEFA] text-base">
               The Jadavpur University IEEE student branch, founded in 2010, belongs
               to the Kolkata section of Region 10 of the organization. We are a
               group of enthusiastic students who are promoting innovative ideas
@@ -139,7 +139,7 @@ export function Footer(): JSX.Element {
 
         {/* Footer Divider and Copyright */}
         <div className="h-[1px] w-full bg-white rounded-full mt-6"></div>
-        <p className="text-[#B0AAAA] mt-4 text-center">
+        <p className="text-[#FFFEFA] mt-4 text-center">
           Made with 🤍 by IEEE JUSB
         </p>
       </div>
