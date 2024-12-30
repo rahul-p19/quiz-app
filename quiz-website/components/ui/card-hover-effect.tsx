@@ -91,11 +91,11 @@ export const CardImage = ({
 }) => {
   return (
     <Image
-            height="100"
-            width="100"
+            height="1200"
+            width="1200"
             alt="Avatar"
-            src={`/${children}`}
-            className={cn("h-45 w-[100%] mx-auto rounded-xl border-2 object-cover",className)}
+            src={`${children}`}
+            className={cn("h-[100%] w-[90%] mx-auto rounded-full border-2 object-cover",className)}
             
           />
     
