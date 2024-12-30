@@ -18,6 +18,7 @@ export function GoogleGeminiEffectDemo() {
 
   return (
     <div
+      id="quiz"
       className="h-[400vh] bg-gradient-to-b from-[#000080] to-[#000] w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
       ref={ref}
     >

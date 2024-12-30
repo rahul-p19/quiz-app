@@ -6,6 +6,7 @@ import {Navbar} from '@/components/Navigation/Navbar'
 import {Footer} from '@/components/footer'
 import { About } from '@/components/about/page'
 import { Speakers } from '@/components/speakers/page'
+import Venue from '@/components/venue/page'
 function Page() {
   return (
     <>
@@ -14,6 +15,7 @@ function Page() {
       <Home />
       <About/>
       <Timelines/>
+      <Venue/>
       <Speakers/>
       <GoogleGeminiEffectDemo />
       <Footer/>
