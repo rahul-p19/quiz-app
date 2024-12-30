@@ -4,20 +4,13 @@ import { Timeline } from "@/components/ui/timeline";
 export function Timelines() {
   const data = [
     {
-      title: "2024",
+      title: "12-1.00pm",
       content: (
         <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Built and launched Aceternity UI and Aceternity UI Pro from scratch
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-           {/*  <Image
-              src=""
-              alt="startup template"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
+          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+          Freshman to Founder, Journey with IEEE JUSB: Saptarshi Pani.
+          </h1>
+          {/* <div className="grid grid-cols-2 gap-4">
             <Image
               src=""
               alt="startup template"
@@ -38,25 +31,28 @@ export function Timelines() {
               width={500}
               height={500}
               className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            /> */}
-          </div>
+            />
+            <Image
+              src=""
+              alt="startup template"
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            /> 
+          </div> */}
         </div>
       ),
     },
     {
-      title: "Early 2023",
+      title: "1.00-2.00pm",
       content: (
         <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            I usually run out of copy, but when I see content this big, I try to
-            integrate lorem ipsum.
-          </p>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Lorem ipsum is for people who are too lazy to write copy. But we are
-            not. Here are some more example of beautiful designs I built.
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            {/* <Image
+          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+            Break
+          </h1>
+          
+         {/* <div className="grid grid-cols-2 gap-4">
+             <Image
               src="https://assets.aceternity.com/pro/hero-sections.png"
               alt="hero template"
               width={500}
@@ -83,37 +79,21 @@ export function Timelines() {
               width={500}
               height={500}
               className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            /> */}
-          </div>
+            /> 
+          </div> */}
         </div>
       ),
     },
     {
-      title: "Changelog",
+      title: "2.00-2.30pm",
       content: (
         <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
-            Deployed 5 new components on Aceternity today
-          </p>
-          <div className="mb-8">
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Card grid component
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Startup template Aceternity
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Random file upload lol
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Himesh Reshammiya Music CD
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Salman Bhai Fan Club registrations open
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {/* <Image
+          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-4">
+          General Address by VC, Jadavpur University and Chairperson IEEE Kolkata Section.
+
+          </h1>
+          {/* <div className="grid grid-cols-2 gap-4">
+             <Image
               src=""
               alt="hero template"
               width={500}
@@ -140,8 +120,57 @@ export function Timelines() {
               width={500}
               height={500}
               className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            /> */}
-          </div>
+            /> 
+          </div> */}
+        </div>
+      ),
+    },
+    {
+      title: "2.30-3.15pm",
+      content: (
+        <div>
+          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+          Web Dev Session. 
+          </h1>
+        </div>
+      ),
+    },
+    {
+      title: "3.15-4.00pm",
+      content: (
+        <div>
+          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+          Gen AI session.
+          </h1>
+        </div>
+      ),
+    },
+    {
+      title: "4.00-4.30pm",
+      content: (
+        <div>
+          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+          Career Development with IEEE by Saptarshi Ghosh.
+          </h1>
+        </div>
+      ),
+    },{
+      title: "4.30-4.45pm",
+      content: (
+        <div>
+          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+          Serve Food and Inform about DoubleSlash and TechX.
+          </h1>
+        </div>
+      ),
+    },
+    {
+      title: "5.00-5.45pm",
+      content: (
+        <div>
+          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+          Infinitieee and Prize Distribution. 
+          </h1>
         </div>
       ),
     },
