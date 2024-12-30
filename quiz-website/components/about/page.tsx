@@ -5,45 +5,46 @@ export function About() {
   const testimonials = [
     {
       quote:
-        "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-      name: "Sarah Chen",
+        "Double Slash, organised by IEEE JUSB is Jadavpur University's first ever offline 24 hour hackathon. Here different tracks are provided for the participants. Double Slash attracts uniqueness and creativity packaged in the form of coding and reasoning. IEEE JUSB is going to soon present Double Slash with a bang, so interested participants may as well start to gear up !!",
+      name: "Double // Slash",
+      designation: "VP of Technology at FutureNet",
+      src: "/assets/ds.jpg",
+    }, 
+    {
+      quote:
+        "IEEE JUSB is the proud pioneer of TechX Congress which has become a global sensation since. The second edition took place in Shantiniketan and featured talks on diverse topics and an extensive workshop on augmented reality. Stuffed with hackathons and quizzes, this was undoubtedly IEEE JUSB's one of the most enriching and enjoyable events",
+      name: "TechX",
       designation: "Product Manager at TechFlow",
-      src: "/assets/abcs.jpg",
+      src: "/assets/tx.jpg",
     },
      {
       quote:
-        "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-      name: "Michael Rodriguez",
+        "EarthXChange served as a platform to address rising concerns on climate changes and global issues. Insightful talks from industry experts along with competitions and hackathons with different tracks centred on climate sustainability served to stimulate the technical acumen of aspiring students",
+      name: "EarthXChange",
       designation: "CTO at InnovateSphere",
-      src: "/assets/abcs.jpg",
+      src: "/assets/xchange.jpg",
     },
     {
       quote:
-        "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-      name: "Emily Watson",
+        "Machine Learning Accelerator Summit is an event solely dedicated to providing the participants with a strong foundation in Machine Learning. With sessions on python, hands on workshops on machine learning and deep learning and contests the event provided the participants the thrust for them to move forward in their quest of Machine Learning.",
+      name: "MLAS",
       designation: "Operations Director at CloudScale",
-      src: "/assets/abcs.jpg",
+      src: "/assets/ml.jpg",
     },
     {
       quote:
-        "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-      name: "James Kim",
+        "Organised by IEEE JUSB at Jadavpur University's annual tech - fest Srijan, Cypher is an exhilirating event based on cryptography and the art of coding and decoding, inviting more than 700 registrations in a span of only 24 hours . Paricipants were taught about different cyphers and challenged with brain storming questions, with the level advancing in later rounds.",
+      name: "Cypher",
       designation: "Engineering Lead at DataPro",
-      src: "/assets/abcs.jpg",
+      src: "/assets/cypher.jpg",
     },
-    {
-      quote:
-        "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-      name: "Lisa Thompson",
-      designation: "VP of Technology at FutureNet",
-      src: "/assets/abcs.jpg",
-    }, 
+    
   ];
   return (
      <>
         
         <div id="about" className=" md:h-screen bg-[#000080] text-white ">
-          <h1 className="text-white text-center text-4xl md:text-5xl text-bold pt-10">ABOUT US</h1>
+          <h1 className="text-white underline text-center text-4xl md:text-5xl text-bold pt-10">ABOUT US</h1>
           <AnimatedTestimonials testimonials={testimonials} />
         </div>
       </> );

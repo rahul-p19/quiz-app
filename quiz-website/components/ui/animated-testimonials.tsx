@@ -45,7 +45,7 @@ export const AnimatedTestimonials = ({
   return (
     
     <div className="w-[100%] md:h-[90%] mx-auto antialiased font-sans px-4   md:px-8 lg:px-12 py-10 grid md:grid-cols-2">
-      <div className="left relative grid grid-cols-1  py-10 justify-center ">
+      <div className="left relative grid grid-cols-1  gap-2 justify-center ">
         
           <div className="image relative h-60 w-[50%] mx-auto ">
             <AnimatePresence>
@@ -86,14 +86,14 @@ export const AnimatedTestimonials = ({
                     width={500}
                     height={500}
                     draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center"
+                    className="h-full w-full rounded-3xl object-cover "
                   />
                 </motion.div>
               ))}
             </AnimatePresence>
           
         </div>
-        <div className="name+button flex justify-between flex-col mx-auto pt-5 md:pt-0  md:pb-8">
+        <div className="name+button flex justify-between flex-col mx-auto gap-2  text-center  ">
           <motion.div
             key={active}
             initial={{
@@ -118,8 +118,8 @@ export const AnimatedTestimonials = ({
             </h3>
             {/* <p className="text-sm text-gray-500 dark:text-neutral-500">
               {testimonials[active].designation}
-            </p>
-            <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
+            </p> */}
+            <motion.p className="text-lg text-gray-500  dark:text-neutral-300">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -143,7 +143,7 @@ export const AnimatedTestimonials = ({
                   {word}&nbsp;
                 </motion.span>
               ))}
-            </motion.p> */}
+            </motion.p> 
           </motion.div>
           <div className=" button flex justify-center gap-4 pt-3 md:pt-0 md:pb-10">
             <button
@@ -163,12 +163,8 @@ export const AnimatedTestimonials = ({
           </div>
         </div>
       </div>
-      <div className="right px-5  text-center md:text-start  pb-5 md:p-10 "> 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, sequi? Id adipisci repudiandae consequatur cupiditate eveniet voluptatum numquam aspernatur debitis libero possimus quos, iure, dolore doloremque ab ex quasi suscipit!
-        Alias est natus possimus eveniet illum tempore doloremque magni dolorum repellat excepturi totam suscipit ut molestias illo, quidem culpa aut, rem, voluptate laudantium? Natus quae sunt, animi earum non neque.
-        Rerum molestias quidem nisi aliquam impedit, nostrum expedita repellat aspernatur. Saepe libero quod iste vero quaerat qui facilis amet esse, possimus placeat, molestias aliquam ad optio voluptatum. Nostrum, fuga ipsa?
-        Architecto vitae excepturi aliquam assumenda soluta eaque quam? Magnam omnis ullam minus voluptatem inventore in aut quas ad excepturi nobis! Rem in sint quo corrupti labore, fugit nulla libero totam.
-        Atque, id numquam odio reprehenderit deserunt dolor obcaecati rerum maxime et consectetur at quidem, incidunt nulla! Harum doloremque beatae quaerat sequi blanditiis. Dolore, modi nesciunt facilis esse dolorum similique voluptatibus!</p>
+      <div className="right px-5 pr-8 text-center md:text-start pt-7 pb-5 md:p-10 "> 
+        <p>At IEEE JUSB, we’re more than just a student chapter—we’re a dynamic community of innovators, creators, and problem-solvers committed to driving change through collaboration. Founded in 2010 at one of the oldest and most prestigious universities in the country, JADAVPUR UNIVERSITY, we belong to the Kolkata section of Region 10. As one of the most active student branches in our section, we are there to support you every step of the way whether you're starting and eager to learn, ready to present your ideas, or passionate about diving into the world of technology or design. Through hands-on workshops, engaging seminars, and other large-scale events thriving throughout the year we intend to bridge the gap between knowledge and real-world application. Together, we spark  the fire of learning and innovation, thus building a passionate community that stands on sharing ideas and making impacts</p>
       </div>
     </div>
   );
