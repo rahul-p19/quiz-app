@@ -6,10 +6,10 @@ const {auth} = NextAuth(authConfig);
 
 export default auth((req) => {
   // Check if user is authenticated
-  if (!req.auth) {
-    // Redirect to login if trying to access protected routes
-    return NextResponse.redirect(new URL('/auth/login', req.nextUrl.origin));
-  }
+  // if (!req.auth) {
+  //   // Redirect to login if trying to access protected routes
+  //   return NextResponse.redirect(new URL('/auth/login', req.nextUrl.origin));
+  // }
 
   const role = req.auth?.user?.role;
   const {nextUrl} = req;
