@@ -9,6 +9,9 @@ export const signupSchema = z.object({
   name: z.string().min(1, "Name is required."),
   password: z.string().min(1, "Password is required."),
   email: z.string().min(1, "Email is required"),
+  phone: z.string().min(1, "Phone number is required"),
+  department: z.string().min(1, "Department is required"),
+  year: z.string().min(1, "Year is required")
 });
 
 export const adminSignupSchema = z.object({
