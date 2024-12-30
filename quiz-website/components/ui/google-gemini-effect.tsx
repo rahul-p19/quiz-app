@@ -22,11 +22,13 @@ export const GoogleGeminiEffect = ({
   return (
     <div className={cn("sticky top-80", className)}>
       <p className="text-lg md:text-7xl font-normal pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300">
-        {title || `Loren Ipsum`}
+        {title || `COMING ∞ SOON !`}
       </p>
       <p className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">
         {description ||
-          `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed`}
+          `Ready to launch into an infinite universe of ideas and technology?
+InfinitIEEE promises to take you on an experience designed to ignite your curiosity.
+Courageous enough to take your first step? Click below to unlock your adventure!`}
       </p>
       <div className="w-full h-[890px] -top-60 md:-top-40  flex items-center justify-center bg-red-transparent absolute ">
         <button className="font-bold bg-white rounded-full md:px-4 md:py-2 px-2 py-1 md:mt-24 mt-8 z-30 md:text-base text-black text-xs  w-fit mx-auto ">
