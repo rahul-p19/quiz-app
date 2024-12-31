@@ -7,8 +7,8 @@ export function Timelines() {
       title: "12-1.00pm",
       content: (
         <div>
-          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
-          Freshman to Founder, Journey with IEEE JUSB: Saptarshi Pani.
+          <h1 className="text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+            Freshman to Founder, Journey with IEEE JUSB: Saptarshi Pani.
           </h1>
           {/* <div className="grid grid-cols-2 gap-4">
             <Image
@@ -47,11 +47,11 @@ export function Timelines() {
       title: "1.00-2.00pm",
       content: (
         <div>
-          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+          <h1 className="text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
             Break
           </h1>
-          
-         {/* <div className="grid grid-cols-2 gap-4">
+
+          {/* <div className="grid grid-cols-2 gap-4">
              <Image
               src="https://assets.aceternity.com/pro/hero-sections.png"
               alt="hero template"
@@ -88,9 +88,9 @@ export function Timelines() {
       title: "2.00-2.30pm",
       content: (
         <div>
-          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-4">
-          General Address by VC, Jadavpur University and Chairperson IEEE Kolkata Section.
-
+          <h1 className="text-neutral-200 text-2xl md:text-4xl font-medium mb-4">
+            General Address by VC, Jadavpur University and Chairperson IEEE
+            Kolkata Section.
           </h1>
           {/* <div className="grid grid-cols-2 gap-4">
              <Image
@@ -129,8 +129,8 @@ export function Timelines() {
       title: "2.30-3.15pm",
       content: (
         <div>
-          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
-          Web Dev Session. 
+          <h1 className="text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+            Web Dev Session.
           </h1>
         </div>
       ),
@@ -139,8 +139,8 @@ export function Timelines() {
       title: "3.15-4.00pm",
       content: (
         <div>
-          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
-          Gen AI session.
+          <h1 className="text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+            Gen AI session.
           </h1>
         </div>
       ),
@@ -149,17 +149,18 @@ export function Timelines() {
       title: "4.00-4.30pm",
       content: (
         <div>
-          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
-          Career Development with IEEE by Saptarshi Ghosh.
+          <h1 className="text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+            Career Development with IEEE by Saptarshi Ghosh.
           </h1>
         </div>
       ),
-    },{
+    },
+    {
       title: "4.30-4.45pm",
       content: (
         <div>
-          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
-          Refreshments
+          <h1 className="text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+            Refreshments
           </h1>
         </div>
       ),
@@ -168,8 +169,8 @@ export function Timelines() {
       title: "5.00-5.45pm",
       content: (
         <div>
-          <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
-          Infinitieee and Prize Distribution. 
+          <h1 className="text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
+            Infinitieee and Prize Distribution.
           </h1>
         </div>
       ),

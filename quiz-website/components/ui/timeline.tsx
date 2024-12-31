@@ -7,7 +7,6 @@ import {
 } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-
 interface TimelineEntry {
   title: string;
   content: React.ReactNode;
@@ -34,13 +33,12 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div 
-      className="w-full bg-[url('/assets/tbg2.jpg')]   bg-neutral-950/10 bg-cover  bg-center bg-fixed   md:px-10"
+    <div
+      className="w-full bg-[url('/assets/tbg3.png')] bg-opacity-50   bg-neutral-950/10 bg-cover  bg-center bg-fixed   md:px-10"
       ref={containerRef}
     >
-       
       <div className="max-w-7xl  text-center mx-auto pt-5 md:pt-10 px-4 md:px-8 lg:px-10">
-        <h1 className="text-black font-extrabold text-center text-4xl md:text-5xl text-bold pt-10">
+        <h1 className="text-white font-extrabold text-center text-4xl md:text-5xl text-bold pt-10">
           TIMELINE
         </h1>
       </div>
@@ -55,7 +53,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
                 <div className="h-4 w-4 rounded-full bg-black dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
               </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-4xl font-bold text-blue-800 dark:text-neutral-500 ">
+              <h3 className="hidden md:block text-xl md:pl-20 md:text-4xl font-bold text-blue-100 dark:text-neutral-500 ">
                 {item.title}
               </h3>
             </div>
