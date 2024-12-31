@@ -44,7 +44,7 @@ export function About() {
      <>
         
         <div id="about" className=" md:h-screen bg-[#000080] text-white ">
-          <h1 className="text-white underline text-center text-4xl md:text-5xl text-bold pt-10">ABOUT US</h1>
+          <h1 className="text-white  font-extrabold text-center text-4xl md:text-5xl text-bold pt-10">ABOUT US</h1>
           <AnimatedTestimonials testimonials={testimonials} />
         </div>
       </> );
