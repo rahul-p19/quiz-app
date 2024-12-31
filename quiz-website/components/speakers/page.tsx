@@ -2,8 +2,8 @@ import { HoverEffect } from "../ui/card-hover-effect";
 export function Speakers() {
   return (
 
-    <div id="speakers" className="max-w-screen min-h-screen mx-auto px-8  bg-[#0000e0]">
-      <h1 className="text-center text-4xl text-bold md:text-5xl pt-5 underline">SPEAKERS</h1>
+    <div id="speakers" className="max-w-screen min-h-screen mx-auto px-8  bg-[#1895da]">
+      <h1 className="text-center text-4xl mt-5 font-extrabold md:text-5xl pt-5 text-white">SPEAKERS</h1>
       <HoverEffect items={projects} />
     </div>
   );
