@@ -29,7 +29,7 @@ export const projects = [
   },
   {
     src: `/assets/Vc.jpg`,
-    title: "Professor Bhaskar Gupta",
+    title: "Dr. Bhaskar Gupta",
     description:
       "Honourable Vice Chancellor of Jadavpur University",
     link: "https://jadavpuruniversity.in/",

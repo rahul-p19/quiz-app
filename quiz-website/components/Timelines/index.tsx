@@ -159,7 +159,7 @@ export function Timelines() {
       content: (
         <div>
           <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl md:text-4xl font-medium mb-8">
-          Serve Food and Inform about DoubleSlash and TechX.
+          Refreshments
           </h1>
         </div>
       ),
@@ -176,7 +176,7 @@ export function Timelines() {
     },
   ];
   return (
-    <div id="timelines" className="w-full ">
+    <div id="timelines" className="w-full  ">
       <Timeline data={data} />
     </div>
   );
