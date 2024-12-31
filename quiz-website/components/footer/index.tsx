@@ -57,8 +57,8 @@ export function Footer(): JSX.Element {
     { text: "About", href: "#about" },
     {
       text: "Register",
-      href: "",
-      external: true,
+      href: "/signup",
+      
     },
   ];
 

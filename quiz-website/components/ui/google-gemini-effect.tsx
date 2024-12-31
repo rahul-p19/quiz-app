@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { motion, MotionValue } from "framer-motion";
 import React from "react";
+import Link from "next/link";
 
 const transition = {
   duration: 0,
@@ -30,10 +31,12 @@ export const GoogleGeminiEffect = ({
 InfinitIEEE promises to take you on an experience designed to ignite your curiosity.
 Courageous enough to take your first step? Click below to unlock your adventure!`}
       </p>
-      <div className="w-full h-[890px] -top-40 md:-top-20 mt-5 md:-mt-8 lg:-mt-5   flex items-center justify-center bg-red-transparent absolute ">
-        <button className="font-bold bg-white rounded-full md:px-4 md:py-2 px-2 py-1  z-30 md:text-base text-black text-xs  w-fit mx-auto ">
-          Register Now!
-        </button>
+      <div className="w-full h-[890px] z-50 -top-40 md:-top-20 mt-5 md:-mt-8 lg:-mt-5   flex items-center justify-center bg-red-transparent absolute ">
+        <Link href={"/signup"}>
+          <button className="font-bold  bg-white rounded-full md:px-4 md:py-2 px-2 py-1   md:text-base text-black text-xs  w-fit mx-auto ">
+            Register Now!
+          </button>
+        </Link>
       </div>
       <svg
         width="1440"
