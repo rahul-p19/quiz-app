@@ -22,15 +22,17 @@ export function GoogleGeminiEffectDemo() {
       className="h-[400vh] bg-gradient-to-b from-[#000080] to-[#000] w-full dark:border dark:border-white/[0.1] rounded-md relative pt-20 overflow-clip"
       ref={ref}
     >
-      <GoogleGeminiEffect
-        pathLengths={[
-          pathLengthFirst,
-          pathLengthSecond,
-          pathLengthThird,
-          pathLengthFourth,
-          pathLengthFifth,
-        ]}
-      />
+      <div className="sticky top-14 h-screen">
+        <GoogleGeminiEffect
+          pathLengths={[
+            pathLengthFirst,
+            pathLengthSecond,
+            pathLengthThird,
+            pathLengthFourth,
+            pathLengthFifth,
+          ]}
+        />
+      </div>
     </div>
   );
 }
