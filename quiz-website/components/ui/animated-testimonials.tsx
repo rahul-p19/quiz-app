@@ -111,7 +111,7 @@ export const AnimatedTestimonials = ({
                   width={500}
                   height={500}
                   draggable={false}
-                  className="h-full w-full rounded-3xl object-cover"
+                  className="h-full w-full rounded-3xl object-fit"
                 />
               </motion.div>
             ))}
