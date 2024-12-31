@@ -11,7 +11,7 @@ async function Signup() {
   // console.log(session);
   return (
     <main className="flex flex-row justify-center items-center w-full h-screen">
-      <div className="w-1/2 h-full bg-white">
+      <div className="w-1/2 h-full bg-white hidden md:block">
         <BackgroundBeamsWithCollision>
           <h2 className="text-2xl relative z-20 md:text-5xl font-bold text-center text-white tracking-tight">
             {/* What&apos;s cooler than Beams?{" "} */}
@@ -27,7 +27,7 @@ async function Signup() {
           </h2>
         </BackgroundBeamsWithCollision>
       </div>
-      <div className="w-1/2 h-full flex flex-col items-center justify-center">
+      <div className="w-full md:w-1/2 h-full flex flex-col items-center justify-center">
         <div className="bg-[#000] rounded-xl shadow-lg p-6 mx-2 max-w-lg flex flex-col items-center gap-y-4 border-white border">
           <SignupForm />
         </div>
