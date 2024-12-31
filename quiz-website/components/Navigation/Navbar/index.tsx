@@ -35,13 +35,7 @@ export function Navbar() {
           <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
         ),
       },
-      {
-        name: "∞",
-        sectionId: "quiz",
-        icon: (
-          <span>∞</span>
-        ),
-      },
+      
   ];
   return (
     <div className="relative  w-full">
