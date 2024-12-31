@@ -8,8 +8,8 @@ async function Signup() {
   if(session && session.user.role=='ADMIN') redirect("/admin");
   if(session && session.user.role=='USER') redirect("/");
   // console.log(session);
-	return <main className="flex flex-col justify-center items-center h-full">
-    <div className="bg-gradient-to-tr from-[#00000040] via-[#00000020] to-secondary backdrop-blur-lg border border-[#ffffff40] rounded-xl shadow-lg p-6 mx-2 max-w-sm flex flex-col items-center gap-y-4">
+	return <main className="flex flex-row justify-center items-center h-screen bg-gradient-to-b from-[#000080] to-[#0000FF]">
+    <div className="bg-[#000] rounded-xl shadow-lg p-6 mx-2 max-w-sm flex flex-col items-center gap-y-4">
       <SignupForm />
     </div>
   </main>;

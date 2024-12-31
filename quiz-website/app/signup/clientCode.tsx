@@ -56,7 +56,7 @@ function SignupForm() {
 			.then((res) => {
 				if (res?.success) {
 					setSuccessMessage(res.message || "Signup successful!");
-					setButtonText("Sucess..");
+					setButtonText("Success..");
 
 				} else {
 					setButtonText("Sign Up");
