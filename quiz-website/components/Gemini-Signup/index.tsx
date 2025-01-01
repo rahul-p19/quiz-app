@@ -23,7 +23,7 @@ export function GoogleGeminiEffectDemo() {
       className="h-fit md:h-[400vh] bg-gradient-to-b from-[#000080] to-[#000] w-full dark:border dark:border-white/[0.1] rounded-md relative pt-20 overflow-clip"
       ref={ref}
     >
-      <div className="flex flex-col gap-4 items-center justify-center h-full my-4 mb-8">
+      <div className="md:hidden flex flex-col gap-4 items-center justify-center h-full my-4 mb-8">
         <p className="text-4xl  font-extrabold pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300">
           {`COMING SOON !`}
         </p>
