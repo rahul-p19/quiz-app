@@ -28,7 +28,7 @@ async function Signup() {
         </BackgroundBeamsWithCollision>
       </div>
       <div className="w-full md:w-1/2 h-full flex flex-col items-center justify-center">
-        <div className="bg-[#000] rounded-xl shadow-lg p-6 mx-2 max-w-lg flex flex-col items-center gap-y-4 border-white border">
+        <div className="bg-[#000] rounded-xl shadow-lg p-6 mx-2 max-w-sm flex flex-col items-center gap-y-4 border-white border">
           <SignupForm />
         </div>
       </div>

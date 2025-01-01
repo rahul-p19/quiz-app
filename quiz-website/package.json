@@ -12,6 +12,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
     "@prisma/client": "^5.22.0",
+    "@radix-ui/react-toast": "^1.2.4",
     "@tabler/icons-react": "^3.26.0",
     "@tsparticles/engine": "^3.7.1",
     "@tsparticles/react": "^3.0.0",
