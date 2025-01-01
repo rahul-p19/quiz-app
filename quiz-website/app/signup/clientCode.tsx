@@ -68,6 +68,7 @@ function SignupForm() {
           toast({
             title: "Sign Up Successful!",
             description: "Check your email for confirmation",
+            variant: "success",
           });
           setButtonText("Success..");
         } else {
