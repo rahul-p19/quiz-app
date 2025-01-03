@@ -1,3 +1,5 @@
+import { IconMail, IconMapPin } from "@tabler/icons-react";
+
 function Venue() {
   return (
     <>
@@ -17,17 +19,22 @@ function Venue() {
               loading="lazy"
             ></iframe>
           </div>
-          <div className="venueblocks  w-[100%] grid grid-cols-1 gap-10 p-10 text-black">
-            <p className="border-4 rounded-xl p-5 md:p-10 text-center md:text-start bg-white">
-              <b>DR. TRIGUNA SEN AUDITORIUM</b> : 188, Raja Subodh Chandra
-              Mallick Rd, Jadavpur University Campus Area, Jadavpur, Kolkata,
-              West Bengal 700032
-            </p>
-            <p className="border-4 rounded-xl p-5 md:p-10 text-center md:text-start bg-white">
-              <b>Amitava Dey Memorial Hall</b> : Department of Computer Science
-              and Engineering,188, Raja Subodh Chandra Mallick Rd, Jadavpur
-              University Campus Area, Jadavpur, Kolkata, West Bengal 700032
-            </p>
+          <div className="venueblocks  w-[100%] grid grid-cols-1 place-items-center p-10 text-black">
+            <h2 className="text-white text-4xl font-bold">Jadavpur University</h2>
+            <div className="border-4 rounded-xl p-5 md:p-10 text-center md:text-start bg-white h-fit flex flex-col gap-y-2">
+              <p className="w-full flex justify-center gap-x-2">
+                <IconMapPin />
+                <b>DR. TRIGUNA SEN AUDITORIUM</b>
+              </p>
+
+              <p>188, Raja Subodh Chandra
+                Mallick Rd, Jadavpur University Campus Area, Jadavpur, Kolkata,
+                West Bengal 700032</p>
+            </div>
+            <div className="text-white flex gap-x-2">
+              <IconMail />
+              <a href="mailto:jaduniv.ieee@gmail.com">jaduniv.ieee@gmail.com</a>
+            </div>
           </div>
         </div>
       </div>

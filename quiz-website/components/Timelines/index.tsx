@@ -177,7 +177,7 @@ export function Timelines() {
     },
   ];
   return (
-    <div id="timelines" className="w-full  ">
+    <div id="timelines" className="w-full overflow-clip">
       <Timeline data={data} />
     </div>
   );
