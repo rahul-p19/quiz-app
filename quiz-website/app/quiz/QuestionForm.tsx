@@ -9,63 +9,63 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
   const setAnswers = context!.setAnswers;
 
   const [backgrounds, setBackgrounds] = useState<{ a: string, b: string, c: string, d: string }>({
-    a: 'bg-white',
-    b: 'bg-white',
-    c: 'bg-white',
-    d: 'bg-white'
+    a: 'bg-blue-200',
+    b: 'bg-blue-200',
+    c: 'bg-blue-200',
+    d: 'bg-blue-200'
   });
 
   useEffect(() => {
     switch (answers[question.questionId - 1]) {
       case "a":
         setBackgrounds({
-          a: 'bg-blue-400',
-          b: 'bg-white',
-          c: 'bg-white',
-          d: 'bg-white'
+          a: 'bg-blue-400 border border-blue-700',
+          b: 'bg-blue-200',
+          c: 'bg-blue-200',
+          d: 'bg-blue-200'
         })
         break;
       case "b":
         setBackgrounds({
-          a: 'bg-white',
-          b: 'bg-blue-400',
-          c: 'bg-white',
-          d: 'bg-white'
+          a: 'bg-blue-200',
+          b: 'bg-blue-400 border border-blue-700',
+          c: 'bg-blue-200',
+          d: 'bg-blue-200'
         })
         break;
       case "c":
         setBackgrounds({
-          a: 'bg-white',
-          b: 'bg-white',
-          c: 'bg-blue-400',
-          d: 'bg-white'
+          a: 'bg-blue-200',
+          b: 'bg-blue-200',
+          c: 'bg-blue-400 border border-blue-700',
+          d: 'bg-blue-200'
         })
         break;
       case "d":
         setBackgrounds({
-          a: 'bg-white',
-          b: 'bg-white',
-          c: 'bg-white',
-          d: 'bg-blue-400'
+          a: 'bg-blue-200',
+          b: 'bg-blue-200',
+          c: 'bg-blue-200',
+          d: 'bg-blue-400 border border-blue-700'
         })
         break;
       default:
         setBackgrounds({
-          a: 'bg-white',
-          b: 'bg-white',
-          c: 'bg-white',
-          d: 'bg-white'
+          a: 'bg-blue-200',
+          b: 'bg-blue-200',
+          c: 'bg-blue-200',
+          d: 'bg-blue-200'
         })
         break;
     }
   }, [question, answers]);
 
   return (
-    <div>
+    <div className="flex p-6 sm:my-8 flex-col w-full items-center">
 
-      <h1>{question.statement}</h1>
+      <h1 className="mb-8 text-2xl font-semibold">{question.questionId}. {question.statement}</h1>
 
-      <form className="flex flex-col items-center gap-y-2">
+      <form className="flex flex-col items-center gap-y-4">
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -75,16 +75,16 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
               return temp;
             });
             setBackgrounds({
-              a: 'bg-blue-400',
-              b: 'bg-white',
-              c: 'bg-white',
-              d: 'bg-white'
+              a: 'bg-blue-400 border-2 border-blue-700',
+              b: 'bg-blue-200',
+              c: 'bg-blue-200',
+              d: 'bg-blue-200'
             });
             localStorage.setItem("answers", JSON.stringify(answers));
-            console.log(answers);
           }}
-          className={`text-black px-2 py-1 rounded-sm ${backgrounds.a}`}
+          className={`text-black flex items-center gap-2 px-3 py-2 rounded-sm ${backgrounds.a}`}
         >
+          <span className="border-2 border-black h-fit rounded-sm px-1 text-sm">A</span>
           {question.optiona}
         </button>
         <button
@@ -96,17 +96,17 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
               return temp;
             });
             setBackgrounds({
-              a: 'bg-white',
-              b: 'bg-blue-400',
-              c: 'bg-white',
-              d: 'bg-white'
+              a: 'bg-blue-200',
+              b: 'bg-blue-400 border-2 border-blue-700',
+              c: 'bg-blue-200',
+              d: 'bg-blue-200'
             });
             ;
             localStorage.setItem("answers", JSON.stringify(answers));
-            console.log(answers);
           }}
-          className={`text-black px-2 py-1 rounded-sm ${backgrounds.b}`}
+          className={`text-black flex items-center gap-2 px-3 py-2 rounded-sm ${backgrounds.b}`}
         >
+          <span className="border-2 border-black h-fit rounded-sm px-1 text-sm">B</span>
           {question.optionb}
         </button>
         <button
@@ -118,17 +118,17 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
               return temp;
             });
             setBackgrounds({
-              a: 'bg-white',
-              b: 'bg-white',
-              c: 'bg-blue-400',
-              d: 'bg-white'
+              a: 'bg-blue-200',
+              b: 'bg-blue-200',
+              c: 'bg-blue-400 border-2 border-blue-700',
+              d: 'bg-blue-200'
             });
 
             localStorage.setItem("answers", JSON.stringify(answers));
-            console.log(answers);
           }}
-          className={`text-black px-2 py-1 rounded-sm ${backgrounds.c}`}
+          className={`text-black flex items-center gap-2 px-3 py-2 rounded-sm ${backgrounds.c}`}
         >
+          <span className="border-2 border-black h-fit rounded-sm px-1 text-sm">C</span>
           {question.optionc}
         </button>
 
@@ -142,16 +142,16 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
             });
             //setAnswers((prev) => ([...prev, answers[question.questionId - 1] = 'c']));
             setBackgrounds({
-              a: 'bg-white',
-              b: 'bg-white',
-              c: 'bg-white',
-              d: 'bg-blue-400'
+              a: 'bg-blue-200',
+              b: 'bg-blue-200',
+              c: 'bg-blue-200',
+              d: 'bg-blue-400 border-2 border-blue-700'
             });
             localStorage.setItem("answers", JSON.stringify(answers));
-            console.log(answers);
           }}
-          className={`text-black px-2 py-1 rounded-sm ${backgrounds.d}`}
+          className={`text-black flex items-center gap-2 px-3 py-2 rounded-sm ${backgrounds.d}`}
         >
+          <span className="border-2 border-black rounded-sm px-1 text-sm">D</span>
           {question.optiond}
         </button>
 

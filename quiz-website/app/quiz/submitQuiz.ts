@@ -1,5 +1,6 @@
 "use server"
 import { db } from "@/prisma/client";
+import { QuestionType } from "@/schemas";
 
 interface validAnswerType {
   userId: string,
@@ -7,7 +8,8 @@ interface validAnswerType {
   questionId: number
 }
 
-export default async function submitQuiz(answers: string[], userId: string) {
+export default async function submitQuiz(answers: string[], userId: string, allQuestions: QuestionType[] | undefined) {
+  if (!allQuestions) return { ok: false, msg: "Error in submission" };
   try {
     const userData = await db.user.findFirst({
       where: {
@@ -40,21 +42,12 @@ export default async function submitQuiz(answers: string[], userId: string) {
 
     let points = 0;
 
-    validAnswers.forEach(async (ans) => {
-
-      const questionMarks = await db.question.findFirst({
-        where: {
-          questionId: ans.questionId
-        },
-        select: {
-          marks: true,
-          correctOption: true
-        }
-      });
-
-      if (questionMarks && questionMarks.correctOption && questionMarks.correctOption === ans.selectedOption) points += questionMarks.marks;
-
-    });
+    validAnswers.forEach((ans: validAnswerType) => {
+      if (ans.selectedOption === allQuestions[ans.questionId - 1].correctOption) {
+        console.log("Correct answer!");
+        points += allQuestions[ans.questionId - 1].marks;
+      }
+    })
 
     await db.user.update({
       where: {

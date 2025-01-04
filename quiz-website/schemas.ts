@@ -29,4 +29,5 @@ export interface QuestionType {
   optiond: string;
   correctOption: string;
   statement: string;
+  marks: number;
 }

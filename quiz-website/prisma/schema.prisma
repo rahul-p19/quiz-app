@@ -23,9 +23,9 @@ model User {
   name          String
   email         String
   password      String
-  phone         String @unique @default("0000000000")
-  department    String @default("")
-  year          String @default("")
+  phone         String   @unique @default("0000000000")
+  department    String   @default("")
+  year          String   @default("")
   createdAt     DateTime @default(now())
   role          UserRole @default(USER)
   score         Int      @default(0)

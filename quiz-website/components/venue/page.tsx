@@ -19,8 +19,8 @@ function Venue() {
               loading="lazy"
             ></iframe>
           </div>
-          <div className="venueblocks  w-[100%] grid grid-cols-1 place-items-center p-10 text-black">
-            <h2 className="text-white text-4xl font-bold">Jadavpur University</h2>
+          <div className="venueblocks  w-[100%] grid grid-cols-1 gap-y-4 place-items-center p-10 text-black">
+            <h2 className="text-white text-4xl font-bold text-center">Jadavpur University</h2>
             <div className="border-4 rounded-xl p-5 md:p-10 text-center md:text-start bg-white h-fit flex flex-col gap-y-2">
               <p className="w-full flex justify-center gap-x-2">
                 <IconMapPin />

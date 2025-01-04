@@ -43,6 +43,7 @@ const stopNavigation = () => {
 }
 
 const allowQuestions = () => {
+  console.log("allowing questions");
   fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/allowQuestions`, {
     headers: {
       "adminauth": "colepalmer"
@@ -53,6 +54,7 @@ const allowQuestions = () => {
 };
 
 const stopQuestions = () => {
+  console.log("stopping questions");
   fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stopQuestions`, {
     headers: {
       "adminauth": "colepalmer"
@@ -91,15 +93,15 @@ function AdminControls() {
         <button onClick={() => setQuestion(questionNo)}>Set Question</button>
       </form>
 
-      <button onClick={allowNavigation}>Allow navigation</button>
+      <button onClick={() => allowNavigation()}>Allow navigation</button>
 
-      <button onClick={stopNavigation}>Stop navigation</button>
+      <button onClick={() => stopNavigation()}>Stop navigation</button>
 
-      <button onClick={allowQuestions}>Allow questions</button>
+      <button onClick={() => allowQuestions()}>Allow questions</button>
 
-      <button onClick={stopQuestions}>Stop questions</button>
+      <button onClick={() => stopQuestions()}>Stop questions</button>
 
-      <button onClick={stopQuiz} className="text-white bg-red-500 w-fit">Stop quiz</button>
+      <button onClick={() => stopQuiz()} className="text-white bg-red-500 w-fit">Stop quiz</button>
     </div>
   );
 }

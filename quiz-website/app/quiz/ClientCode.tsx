@@ -4,7 +4,8 @@ import { QuestionType } from "@/schemas";
 import QuestionForm from "./QuestionForm";
 import { QuizContext } from "./QuizContext";
 import Navbar from "./Navbar";
-import Logout from "@/components/Logout";
+import { StarsBackground } from "@/components/ui/stars-background";
+import { signOut } from '@/auth'
 
 export default function ClientCode({ userId }: { userId: string }) {
   const [currentQuestion, setCurrentQuestion] = useState<QuestionType>({
@@ -14,7 +15,8 @@ export default function ClientCode({ userId }: { userId: string }) {
     optionc: "",
     optiond: "",
     correctOption: "a",
-    statement: ""
+    statement: "",
+    marks: 0
   });
 
   const [allowNav, setAllowNav] = useState<boolean>(false);
@@ -81,16 +83,17 @@ export default function ClientCode({ userId }: { userId: string }) {
 
   return (
     <>
-      <div>
+      <div className="min-h-screen bg-gradient-to-b from-black/10 via-stone-900/50 to-blue-950/70">
         <QuizContext.Provider value={{ answers, setAnswers, setQuestion: setCurrentQuestion }}>
-          <div>
-            <h1>Welcome to IEEE JUSB Quiz</h1>
-            <Logout />
+          <div className="flex justify-center items-center p-4">
+            <h1 className="text-4xl mr-2 sm:mr-0 md:text-6xl font-bold ">InfitIEEE</h1>
           </div>
-          {allowNav && <Navbar answers={answers} userId={userId} />}
+          <button className='bg-red-600 rounded-sm px-2 py-1 fixed right-2 top-5' onClick={() => signOut({ redirect: true, redirectTo: "/" })}>Logout</button>
           {questionLive &&
             <QuestionForm question={currentQuestion} />}
+          {allowNav && <Navbar answers={answers} userId={userId} currentQuestion={currentQuestion.questionId} />}
         </QuizContext.Provider>
+        <StarsBackground className="-z-10" />
       </div>
     </>
   );
