@@ -16,6 +16,7 @@ function SignupForm() {
     department: "",
     year: "",
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [errors, setErrors] = useState<z.infer<typeof signupSchema>>({
     name: "",
@@ -40,6 +41,7 @@ function SignupForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     setErrors({
       name: "",
       email: "",
@@ -73,6 +75,7 @@ function SignupForm() {
           setButtonText("Success..");
         } else {
           setButtonText("Sign Up");
+          setLoading(false);
           res?.errors?.map((error) =>
             setErrors((prev) => ({
               ...prev,
@@ -89,7 +92,6 @@ function SignupForm() {
           return;
         }
       })
-      .finally(() => setButtonText("Sign Up"));
   };
 
   return (
@@ -97,7 +99,7 @@ function SignupForm() {
       {successMessage && (
         <div className="text-green-500 text-center mb-4">{successMessage}</div> // Added to display success message
       )}
-      <form className="flex flex-col gap-y-6 mt-6" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-y-6 mt-6" onSubmit={(e: React.FormEvent) => handleSubmit(e)}>
         <div className="flex flex-col">
           <input
             type="text"
@@ -161,6 +163,7 @@ function SignupForm() {
         <button
           type="submit"
           className="text-white font-opensans px-3 py-1 my-4 rounded-sm w-1/2 self-center"
+          disabled={loading}
         >
           {buttonText}
         </button>
