@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AdminControls from "./clientCode";
+import { addQuestion, deleteQuestion } from "./adminFunctions";
 
 function Admin() {
   const [addFormData, setAddFormData] = useState({
@@ -12,12 +13,9 @@ function Admin() {
     correctAnswer: "",
     marks: "",
   });
-  const [LeaderBoardLoading, setLeaderboardLoading] = useState(false);
   const [deleteFormData, setDeleteFormData] = useState({
     questionId: "",
   });
-  const [leaderboard, setLeaderboard] = useState([]);
-  const [displayLeaderBoard, setDisplayLeaderBoard] = useState(false);
 
   const handleAddChange = (e: any) => {
     const { name, value } = e.target;
@@ -38,22 +36,16 @@ function Admin() {
   const handleAddSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/questions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          statement: addFormData.statement,
-          optionA: addFormData.optionA,
-          optionB: addFormData.optionB,
-          optionC: addFormData.optionC,
-          optionD: addFormData.optionD,
-          correctAnswer: addFormData.correctAnswer,
-          marks: addFormData.marks,
-        }),
+      const response = await addQuestion({
+        statement: addFormData.statement,
+        optionA: addFormData.optionA,
+        optionB: addFormData.optionB,
+        optionC: addFormData.optionC,
+        optionD: addFormData.optionD,
+        correctAnswer: addFormData.correctAnswer,
+        marks: addFormData.marks,
       });
-      const data = await response.json();
+
       if (response.ok) {
         alert("Question added successfully!");
         setAddFormData({
@@ -66,72 +58,38 @@ function Admin() {
           marks: "",
         });
       } else {
-        alert(data.error || "Failed to add the question.");
+        alert("Failed to add the question.");
       }
     } catch (error) {
-      console.error("Error adding question:", error);
+      alert(`Error adding question: ${error}`);
     }
   };
 
   const handleDeleteSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/questions", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          questionId: deleteFormData.questionId,
-        }),
-      });
-      const data = await response.json();
+      const questionId = parseInt(deleteFormData.questionId);
+      const response = await deleteQuestion(questionId);
       if (response.ok) {
         alert("Question deleted successfully!");
         setDeleteFormData({ questionId: "" });
       } else {
-        alert(data.error || "Failed to delete the question.");
+        alert("Failed to delete the question.");
       }
     } catch (error) {
-      console.error("Error deleting question:", error);
+      alert(`Error deleting question: ${error}`);
     }
   };
 
-  const fetchLeaderboard = async () => {
-    setLeaderboardLoading(true); // Start loading
-    try {
-      const response = await fetch("/api/leaderboard", {
-        method: "GET",
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setLeaderboard(data.leaderboard || []);
-        setDisplayLeaderBoard(true); // Show leaderboard
-      } else {
-        alert("Failed to fetch leaderboard.");
-      }
-    } catch (error) {
-      console.error("Error fetching leaderboard:", error);
-    } finally {
-      setLeaderboardLoading(false); // Stop loading
-    }
-  };
-
-  // Fetch leaderboard when displayLeaderBoard is true
-  useEffect(() => {
-    if (displayLeaderBoard) {
-      fetchLeaderboard();
-    }
-  }, [displayLeaderBoard]);
 
   return (
-    <div className="min-h-screen bg-black p-8">
-      <div className="max-w-4xl mx-auto bg-gray-800 shadow-md rounded-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-white mb-6">
-          Admin Panel
-        </h1>
-        <AdminControls />
+    <div className="min-h-screen w-full bg-black p-8">
+      <h1 className="text-3xl font-bold text-center text-white mb-12">
+        Admin Panel
+      </h1>
+      <AdminControls />
 
+      <div className="flex flex-col sm:flex-row mt-20 justify-around w-full">
         {/* Add Question Form */}
         <form onSubmit={handleAddSubmit} className="mb-8">
           <h2 className="text-2xl font-semibold text-white mb-4">
@@ -243,33 +201,6 @@ function Admin() {
             Delete Question
           </button>
         </form>
-
-        {/* Leaderboard */}
-        {displayLeaderBoard && LeaderBoardLoading && (
-          <div className="mt-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              Leaderboard
-            </h2>
-            <table className="w-full table-auto bg-gray-700 text-white rounded-lg overflow-hidden">
-              <thead>
-                <tr>
-                  <th className="px-4 py-2 border">Name</th>
-                  <th className="px-4 py-2 border">Email</th>
-                  <th className="px-4 py-2 border">Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                {leaderboard.map((user: any, idx) => (
-                  <tr key={idx}>
-                    <td className="px-4 py-2 border">{user.name}</td>
-                    <td className="px-4 py-2 border">{user.email}</td>
-                    <td className="px-4 py-2 border">{user.score}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
       </div>
     </div>
   );
