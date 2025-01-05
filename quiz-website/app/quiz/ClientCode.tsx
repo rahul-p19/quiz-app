@@ -20,8 +20,8 @@ export default function ClientCode({ userId }: { userId: string }) {
   });
 
   const [allowNav, setAllowNav] = useState<boolean>(false);
-  //const [questionLive, setQuestionLive] = useState<boolean>(true);
   const [questionLive, setQuestionLive] = useState<boolean>(false);
+  const [connected, setConnected] = useState<boolean>(false);
 
   const [answers, setAnswers] = useState<string[]>(["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
 
@@ -41,6 +41,14 @@ export default function ClientCode({ userId }: { userId: string }) {
 
     // const sse = new EventSource("http://localhost:3001/questions");
     const sse = new EventSource(`${process.env.NEXT_PUBLIC_BACKEND_URL}/questions`);
+
+    sse.onopen = () => {
+      setConnected(true);
+    }
+
+    sse.onerror = () => {
+      setConnected(false);
+    }
 
     sse.onmessage = (ev: MessageEvent) => {
       //console.table(ev.data);
@@ -84,14 +92,15 @@ export default function ClientCode({ userId }: { userId: string }) {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-b from-black/10 via-stone-900/50 to-blue-950/70">
-        <QuizContext.Provider value={{ answers, setAnswers, setQuestion: setCurrentQuestion }}>
+        <QuizContext.Provider value={{ answers, setAnswers, setQuestion: setCurrentQuestion, question: currentQuestion }}>
+          <p className={`fixed top-5 left-3 px-2 py-1 rounded-sm ${connected && (questionLive || allowNav) ? "bg-blue-950" : "bg-gray-400"}`}>{connected && (questionLive || allowNav) ? "Live" : "Offline"}</p>
           <div className="flex justify-center items-center p-4">
             <h1 className="text-4xl mr-2 sm:mr-0 md:text-6xl font-bold ">InfitIEEE</h1>
           </div>
           <button className='bg-red-600 rounded-sm px-2 py-1 fixed right-2 top-5' onClick={() => signOut({ redirect: true, redirectTo: "/" })}>Logout</button>
-          {questionLive &&
+          {(questionLive && currentQuestion.questionId !== 0) &&
             <QuestionForm question={currentQuestion} />}
-          {allowNav && <Navbar answers={answers} userId={userId} currentQuestion={currentQuestion.questionId} />}
+          {allowNav && <Navbar answers={answers} userId={userId} />}
         </QuizContext.Provider>
         <StarsBackground className="-z-10" />
       </div>

@@ -61,7 +61,7 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
   }, [question, answers]);
 
   return (
-    <div className="flex p-6 sm:my-8 flex-col w-full items-center">
+    <div className="flex p-6 sm:my-6 flex-col w-full items-center">
 
       <h1 className="mb-8 text-2xl font-semibold">{question.questionId}. {question.statement}</h1>
 

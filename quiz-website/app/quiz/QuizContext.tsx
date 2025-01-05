@@ -4,6 +4,7 @@ import { QuestionType } from "@/schemas";
 interface QuizContextType {
   answers: string[];
   setAnswers: React.Dispatch<React.SetStateAction<string[]>>;
+  question: QuestionType;
   setQuestion: React.Dispatch<React.SetStateAction<QuestionType>>;
 }
 

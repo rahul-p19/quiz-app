@@ -1,17 +1,41 @@
-import React, { useContext, useEffect, useState } from 'react'
+'use client'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { QuizContext } from "./QuizContext";
 import getAllQuestions from "./getQuestions";
 import { QuestionType } from '@/schemas';
 import submitQuiz from './submitQuiz';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 
+const getPaginationRange = (allQuestions: QuestionType[], question: QuestionType) => {
+  let dot = false;
+  const range = allQuestions.map((ques) => {
+    if (ques.questionId === question.questionId) {
+      dot = false;
+      return 0;
+    }
+    if (ques.questionId === 1 || ques.questionId === allQuestions.length || Math.abs(ques.questionId - question.questionId) === 1 || ques.questionId - question.questionId === 2) {
+      dot = false;
+      return 1;
+    }
+    if (!dot) {
+      dot = true;
+      return -1;
+    }
+    dot = true;
+    return -2;
+  });
+  return range;
+}
 
-function Navbar({ answers, userId, currentQuestion }: { answers: string[], userId: string, currentQuestion: number }) {
+function Navbar({ answers, userId }: { answers: string[], userId: string }) {
   const [allQuestions, setAllQuestions] = useState<QuestionType[]>();
   const [submissionStatus, setSubmissionStatus] = useState<string>("Submit");
+  const [submissionMessage, setSubmissionMessage] = useState<string>("");
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
   const myContext = useContext(QuizContext);
 
   const setQuestion = myContext!.setQuestion;
+  const question = myContext!.question;
 
   useEffect(() => {
     getAllQuestions()
@@ -25,24 +49,30 @@ function Navbar({ answers, userId, currentQuestion }: { answers: string[], userI
   const handleSubmit = (answers: string[], userId: string) => {
     setSubmissionStatus("Submitting");
     submitQuiz(answers, userId, allQuestions)
-      .then((res: { ok: boolean } | undefined) => {
+      .then((res: { ok: boolean, msg: string } | undefined) => {
+        if (res)
+          setSubmissionMessage(res.msg);
         if (res && res.ok === true) {
           setSubmissionStatus("Submitted");
         } else {
-          setSubmissionStatus("Error");
+          setSubmissionStatus("Submit");
         }
       })
       .catch((_err: any) => {
-        setSubmissionStatus("Error");
+        setSubmissionMessage("Error occurred.");
+        setSubmissionStatus("Submit");
       }
       )
   }
 
-  return (
-    <div className="w-full p-6 flex flex-col items-center gap-y-4">
-      <div className='bg-sky-300/50 px-4 py-2 rounded-sm flex gap-x-3'>
+  if (!allQuestions) return;
+  const paginationRange = getPaginationRange(allQuestions!, question);
 
-        <button className='text-black p-1 rounded-sm hover:bg-sky-500/70'
+  return (
+    <div className="w-full px-6 flex flex-col items-center gap-y-4">
+      <div className='bg-sky-300/50 px-2 sm:px-4 py-2 rounded-sm flex gap-x-1.5 sm:gap-x-3'>
+
+        <button className='text-black sm:p-1 rounded-sm hover:bg-sky-500/70'
           onClick={() => {
             if (allQuestions)
               setQuestion((prev) => {
@@ -53,17 +83,27 @@ function Navbar({ answers, userId, currentQuestion }: { answers: string[], userI
           <IconChevronLeft />
         </button>
 
-        {allQuestions && allQuestions.map((_qstn: QuestionType, ind: number) =>
-          <button key={ind}
-            onClick={() => {
-              setQuestion(() => allQuestions[ind]);
-            }}
-            className={`text-black border px-2 py-1 transition-all duration-150 rounded-sm hover:bg-sky-500/70 border-transparent`}>
-            {ind + 1}
-          </button>
+        {allQuestions && paginationRange.map((val: number, ind: number) => {
+          if (val === 0 || val === 1) {
+            return (
+              <button key={ind}
+                onClick={() => {
+                  setQuestion(() => allQuestions[ind]);
+                }}
+                className={`text-black border px-1 sm:px-2 py-1 transition-all duration-150 rounded-sm hover:bg-sky-500/70 border-transparent ${val === 0 ? "bg-blue-700/50 border-blue-700" : ""}`}>
+                {ind + 1}
+              </button>)
+          }
+          else if (val === -1)
+            return (
+              <p key={ind}
+                className={`text-black py-1 transition-all duration-150 rounded-sm}`}>
+                ...
+              </p>)
+        }
         )}
 
-        <button className='text-black p-1 rounded-sm hover:bg-sky-500/70'
+        <button className='text-black sm:p-1 rounded-sm hover:bg-sky-500/70'
           onClick={() => {
             if (allQuestions)
               setQuestion((prev) => {
@@ -74,10 +114,32 @@ function Navbar({ answers, userId, currentQuestion }: { answers: string[], userI
           <IconChevronRight />
         </button>
       </div>
-      <button onClick={() => handleSubmit(answers, userId)} disabled={submissionStatus === "Submitted" || submissionStatus === "Submitting"}
+      <button disabled={submissionStatus === "Submitted" || submissionStatus === "Submitting"}
+        onClick={() => dialogRef.current?.showModal()}
         className='bg-white rounded-sm text-black font-medium px-4 py-1'>
         {submissionStatus}
       </button>
+      <p className='text-white font-medium pb-2'>{submissionMessage}</p>
+
+      <dialog ref={dialogRef} className='backdrop:bg-gray-400/5 backdrop:backdrop-blur-sm bg-blue-950 text-black p-8 rounded-md'>
+        <div className='flex flex-col gap-y-8 text-white'>
+          <h3 className='w-full text-center font-semibold text-2xl'>Confirmation</h3>
+          <p className='text-center'>
+            Are you sure you want to submit? <br /> You won't be able to change your answers later.
+          </p>
+          <div className='flex text-black w-full justify-around'>
+
+            <button onClick={() => {
+              handleSubmit(answers, userId);
+              dialogRef.current?.close();
+            }} disabled={submissionStatus === "Submitted" || submissionStatus === "Submitting"} className='bg-green-600 px-2 py-1 rounded-sm'>
+              {submissionStatus}
+            </button>
+
+            <button className='bg-gray-400 px-2 py-1 rounded-sm' onClick={() => dialogRef.current?.close()}>Cancel</button>
+          </div>
+        </div>
+      </dialog>
     </div >
   )
 }
