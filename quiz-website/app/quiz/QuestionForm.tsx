@@ -63,25 +63,40 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
   return (
     <div className="flex p-6 sm:my-6 flex-col w-full items-center">
 
-      <h1 className="mb-8 text-2xl font-semibold">{question.questionId}. {question.statement}</h1>
+      <h1 className={`mb-8 text-2xl font-semibold ${question.marks === 20 ? "text-[#FFD700]" : "text-white"}`}>{question.questionId}. {question.statement}</h1>
 
       <form className="flex flex-col items-center gap-y-4">
         <button
           onClick={(e) => {
             e.preventDefault();
-            setAnswers(() => {
-              const temp = answers;
-              temp[question.questionId - 1] = 'a';
-              return temp;
-            });
-            setBackgrounds({
-              a: 'bg-blue-400 border-2 border-blue-700',
-              b: 'bg-blue-200',
-              c: 'bg-blue-200',
-              d: 'bg-blue-200'
-            });
+            if (answers[question.questionId - 1] !== 'a') {
+              setAnswers(() => {
+                const temp = answers;
+                temp[question.questionId - 1] = 'a';
+                return temp;
+              });
+              setBackgrounds({
+                a: 'bg-blue-400 border-2 border-blue-700',
+                b: 'bg-blue-200',
+                c: 'bg-blue-200',
+                d: 'bg-blue-200'
+              });
+            } else {
+              setAnswers((prev) => {
+                const temp = prev;
+                temp[question.questionId - 1] = '';
+                return temp;
+              });
+              setBackgrounds({
+                a: 'bg-blue-200',
+                b: 'bg-blue-200',
+                c: 'bg-blue-200',
+                d: 'bg-blue-200'
+              });
+            }
             localStorage.setItem("answers", JSON.stringify(answers));
-          }}
+          }
+          }
           className={`text-black flex items-center gap-2 px-3 py-2 rounded-sm ${backgrounds.a}`}
         >
           <span className="border-2 border-black h-fit rounded-sm px-1 text-sm">A</span>
@@ -90,20 +105,34 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
         <button
           onClick={(e) => {
             e.preventDefault();
-            setAnswers(() => {
-              const temp = answers;
-              temp[question.questionId - 1] = 'b';
-              return temp;
-            });
-            setBackgrounds({
-              a: 'bg-blue-200',
-              b: 'bg-blue-400 border-2 border-blue-700',
-              c: 'bg-blue-200',
-              d: 'bg-blue-200'
-            });
-            ;
+            if (answers[question.questionId - 1] !== 'b') {
+              setAnswers(() => {
+                const temp = answers;
+                temp[question.questionId - 1] = 'b';
+                return temp;
+              });
+              setBackgrounds({
+                a: 'bg-blue-200',
+                b: 'bg-blue-400 border-2 border-blue-700',
+                c: 'bg-blue-200',
+                d: 'bg-blue-200'
+              });
+            } else {
+              setAnswers((prev) => {
+                const temp = prev;
+                temp[question.questionId - 1] = '';
+                return temp;
+              });
+              setBackgrounds({
+                a: 'bg-blue-200',
+                b: 'bg-blue-200',
+                c: 'bg-blue-200',
+                d: 'bg-blue-200'
+              });
+            }
             localStorage.setItem("answers", JSON.stringify(answers));
-          }}
+          }
+          }
           className={`text-black flex items-center gap-2 px-3 py-2 rounded-sm ${backgrounds.b}`}
         >
           <span className="border-2 border-black h-fit rounded-sm px-1 text-sm">B</span>
@@ -112,17 +141,31 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
         <button
           onClick={(e) => {
             e.preventDefault();
-            setAnswers(() => {
-              const temp = answers;
-              temp[question.questionId - 1] = 'c';
-              return temp;
-            });
-            setBackgrounds({
-              a: 'bg-blue-200',
-              b: 'bg-blue-200',
-              c: 'bg-blue-400 border-2 border-blue-700',
-              d: 'bg-blue-200'
-            });
+            if (answers[question.questionId - 1] !== 'c') {
+              setAnswers((prev) => {
+                const temp = prev;
+                temp[question.questionId - 1] = 'c';
+                return temp;
+              });
+              setBackgrounds({
+                a: 'bg-blue-200',
+                b: 'bg-blue-200',
+                c: 'bg-blue-400 border-2 border-blue-700',
+                d: 'bg-blue-200'
+              });
+            } else {
+              setAnswers((prev) => {
+                const temp = prev;
+                temp[question.questionId - 1] = '';
+                return temp;
+              });
+              setBackgrounds({
+                a: 'bg-blue-200',
+                b: 'bg-blue-200',
+                c: 'bg-blue-200',
+                d: 'bg-blue-200'
+              });
+            }
 
             localStorage.setItem("answers", JSON.stringify(answers));
           }}
@@ -135,18 +178,31 @@ export default function QuestionForm({ question }: { question: QuestionType }) {
         <button
           onClick={(e) => {
             e.preventDefault();
-            setAnswers(() => {
-              const temp = answers;
-              temp[question.questionId - 1] = 'd';
-              return temp;
-            });
-            //setAnswers((prev) => ([...prev, answers[question.questionId - 1] = 'c']));
-            setBackgrounds({
-              a: 'bg-blue-200',
-              b: 'bg-blue-200',
-              c: 'bg-blue-200',
-              d: 'bg-blue-400 border-2 border-blue-700'
-            });
+            if (answers[question.questionId - 1] !== 'd') {
+              setAnswers(() => {
+                const temp = answers;
+                temp[question.questionId - 1] = 'd';
+                return temp;
+              });
+              setBackgrounds({
+                a: 'bg-blue-200',
+                b: 'bg-blue-200',
+                c: 'bg-blue-200',
+                d: 'bg-blue-400 border-2 border-blue-700'
+              });
+            } else {
+              setAnswers((prev) => {
+                const temp = prev;
+                temp[question.questionId - 1] = '';
+                return temp;
+              });
+              setBackgrounds({
+                a: 'bg-blue-200',
+                b: 'bg-blue-200',
+                c: 'bg-blue-200',
+                d: 'bg-blue-200'
+              });
+            }
             localStorage.setItem("answers", JSON.stringify(answers));
           }}
           className={`text-black flex items-center gap-2 px-3 py-2 rounded-sm ${backgrounds.d}`}

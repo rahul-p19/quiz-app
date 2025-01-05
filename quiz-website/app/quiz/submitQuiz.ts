@@ -6,6 +6,7 @@ interface validAnswerType {
   userId: string,
   selectedOption: string,
   questionId: number
+
 }
 
 export default async function submitQuiz(answers: string[], userId: string, allQuestions: QuestionType[] | undefined) {
@@ -44,8 +45,10 @@ export default async function submitQuiz(answers: string[], userId: string, allQ
 
     validAnswers.forEach((ans: validAnswerType) => {
       if (ans.selectedOption === allQuestions[ans.questionId - 1].correctOption) {
-        console.log("Correct answer!");
         points += allQuestions[ans.questionId - 1].marks;
+      } else {
+        if (ans.selectedOption !== "" && allQuestions[ans.questionId - 1].marks === 20)
+          points -= 20;
       }
     })
 

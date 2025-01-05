@@ -8,6 +8,9 @@ import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 
 const getPaginationRange = (allQuestions: QuestionType[], question: QuestionType) => {
   let dot = false;
+  allQuestions.sort((a, b) => {
+    return a.questionId - b.questionId;
+  })
   const range = allQuestions.map((ques) => {
     if (ques.questionId === question.questionId) {
       dot = false;
@@ -84,13 +87,14 @@ function Navbar({ answers, userId }: { answers: string[], userId: string }) {
         </button>
 
         {allQuestions && paginationRange.map((val: number, ind: number) => {
+          console.log(val, ind);
           if (val === 0 || val === 1) {
             return (
               <button key={ind}
                 onClick={() => {
                   setQuestion(() => allQuestions[ind]);
                 }}
-                className={`text-black border px-1 sm:px-2 py-1 transition-all duration-150 rounded-sm hover:bg-sky-500/70 border-transparent ${val === 0 ? "bg-blue-700/50 border-blue-700" : ""}`}>
+                className={`text-black border px-1 sm:px-2 py-1 transition-all duration-150 rounded-sm hover:bg-sky-500/70 border-transparent ${(ind + 1) === question.questionId ? "bg-blue-700/50 border-blue-700" : ""}`}>
                 {ind + 1}
               </button>)
           }

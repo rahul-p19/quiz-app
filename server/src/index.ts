@@ -16,7 +16,8 @@ prisma.question.findMany({
     optiona: true,
     optionb: true,
     optionc: true,
-    optiond: true
+    optiond: true,
+    marks: true
   }
 }).then(res => questions = res);
 
