@@ -1,11 +1,19 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { PrismaClient, Question } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { checkOrigin } from "./middleware";
 
 const prisma = new PrismaClient();
 
-//import { questions } from "./questions";
+interface Question {
+  questionId: number;
+  statement: string,
+  optiona: string,
+  optionb: string,
+  optionc: string,
+  optiond: string,
+  marks: number;
+}
 
 var questions: Question[];
 
@@ -145,6 +153,15 @@ app.get("/stopQuestions", (_req: Request, res: Response) => {
 app.get("/stop", (_req: Request, resp: Response) => {
   questionLive = false;
   allowNav = false;
+  currentQuestion = {
+    statement: "",
+    questionId: 0,
+    optiona: "",
+    optionb: "",
+    optionc: "",
+    optiond: "",
+    marks: 0
+  };
   try {
     users.forEach(res => {
       res.write("data: " + "close\n\n"); // will also disable questionLive on frontend

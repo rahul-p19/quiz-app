@@ -17,7 +17,6 @@ const cors_1 = __importDefault(require("cors"));
 const client_1 = require("@prisma/client");
 const middleware_1 = require("./middleware");
 const prisma = new client_1.PrismaClient();
-//import { questions } from "./questions";
 var questions;
 prisma.question.findMany({
     select: {
@@ -140,6 +139,15 @@ app.get("/stopQuestions", (_req, res) => {
 app.get("/stop", (_req, resp) => {
     questionLive = false;
     allowNav = false;
+    currentQuestion = {
+        statement: "",
+        questionId: 0,
+        optiona: "",
+        optionb: "",
+        optionc: "",
+        optiond: "",
+        marks: 0
+    };
     try {
         users.forEach(res => {
             res.write("data: " + "close\n\n"); // will also disable questionLive on frontend
