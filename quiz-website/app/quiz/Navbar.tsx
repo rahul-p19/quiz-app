@@ -87,7 +87,6 @@ function Navbar({ answers, userId }: { answers: string[], userId: string }) {
         </button>
 
         {allQuestions && paginationRange.map((val: number, ind: number) => {
-          console.log(val, ind);
           if (val === 0 || val === 1) {
             return (
               <button key={ind}

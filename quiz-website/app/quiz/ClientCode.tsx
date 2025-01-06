@@ -51,7 +51,10 @@ export default function ClientCode({ userId }: { userId: string }) {
     }
 
     sse.onmessage = (ev: MessageEvent) => {
-      //console.table(ev.data);
+
+      if (sse.readyState !== 1) setConnected(false);
+      else setConnected(true);
+
       if (ev.data === "close") {
         setQuestionLive(false);
         localStorage.setItem("questionLive", "false");

@@ -5,6 +5,9 @@ import { unstable_cache } from "next/cache";
 export default async function getLeaderboard() {
   const getCachedLeaderboard = unstable_cache(async () => {
     const leaderboard = await prisma.user.findMany({
+      where: {
+        role: "USER"
+      },
       select: {
         name: true,
         year: true,

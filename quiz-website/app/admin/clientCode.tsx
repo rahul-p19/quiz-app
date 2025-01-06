@@ -15,10 +15,10 @@ const setQuestion = (questionNo: string) => {
         "adminauth": "colepalmer"
       }
     })
-      .then(() => console.log("quiz started"))
-      .catch((err) => console.error(err));
+      .then(() => alert("Question set."))
+      .catch((err) => alert(`Error occurred: ${err}`));
   } catch (err) {
-    console.error(err);
+    alert(`Error occurred: ${err}`);
   }
 };
 
@@ -28,8 +28,8 @@ const allowNavigation = () => {
       "adminauth": "colepalmer"
     }
   })
-    .then(() => console.log("allowed navigation"))
-    .catch((err) => console.error(err));
+    .then(() => alert("allowed navigation"))
+    .catch((err) => alert(`Error occurred: ${err}`));
 };
 
 const stopNavigation = () => {
@@ -38,30 +38,28 @@ const stopNavigation = () => {
       "adminauth": "colepalmer"
     }
   })
-    .then(() => console.log("stopped navigation"))
-    .catch((err) => console.error(err));
+    .then(() => alert("stopped navigation"))
+    .catch((err) => alert(`Error occurred: ${err}`));
 }
 
 const allowQuestions = () => {
-  console.log("allowing questions");
   fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/allowQuestions`, {
     headers: {
       "adminauth": "colepalmer"
     }
   })
-    .then(() => console.log("allowed questions"))
-    .catch((err) => console.error(err));
+    .then(() => alert("allowed questions"))
+    .catch((err) => alert(`Error occurred: ${err}`));
 };
 
 const stopQuestions = () => {
-  console.log("stopping questions");
   fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stopQuestions`, {
     headers: {
       "adminauth": "colepalmer"
     }
   })
-    .then(() => console.log("stopped questions"))
-    .catch((err) => console.error(err));
+    .then(() => alert("stopped questions"))
+    .catch((err) => alert(`Error occurred: ${err}`));
 };;
 
 const stopQuiz = () => {
@@ -70,8 +68,8 @@ const stopQuiz = () => {
       "adminauth": "colepalmer"
     }
   })
-    .then(() => console.log("quiz stopped"))
-    .catch((err) => console.error(err));
+    .then(() => alert("quiz stopped"))
+    .catch((err) => alert(`Error occurred: ${err}`));
 };
 
 
