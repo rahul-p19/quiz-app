@@ -128,7 +128,7 @@ function Navbar({ answers, userId }: { answers: string[], userId: string }) {
         <div className='flex flex-col gap-y-8 text-white'>
           <h3 className='w-full text-center font-semibold text-2xl'>Confirmation</h3>
           <p className='text-center'>
-            Are you sure you want to submit? <br /> You won't be able to change your answers later.
+            Are you sure you want to submit? <br /> You are submitting the <span className='font-medium text-blue-200'>entire</span> quiz, and won't be able to change your answers later.
           </p>
           <div className='flex text-black w-full justify-around'>
 

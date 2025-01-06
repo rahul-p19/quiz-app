@@ -5,7 +5,7 @@ import QuestionForm from "./QuestionForm";
 import { QuizContext } from "./QuizContext";
 import Navbar from "./Navbar";
 import { StarsBackground } from "@/components/ui/stars-background";
-import { signOut } from '@/auth'
+import { handleSignOut } from "./logout";
 
 export default function ClientCode({ userId }: { userId: string }) {
   const [currentQuestion, setCurrentQuestion] = useState<QuestionType>({
@@ -100,7 +100,7 @@ export default function ClientCode({ userId }: { userId: string }) {
           <div className="flex justify-center items-center p-4">
             <h1 className="text-4xl mr-2 sm:mr-0 md:text-6xl font-bold ">InfitIEEE</h1>
           </div>
-          <button className='bg-red-600 rounded-sm px-2 py-1 fixed right-2 top-5' onClick={() => signOut({ redirect: true, redirectTo: "/" })}>Logout</button>
+          <button className='bg-red-600 rounded-sm px-2 py-1 fixed right-2 top-5' onClick={() => handleSignOut()}>Logout</button>
           {(questionLive && currentQuestion.questionId !== 0) &&
             <QuestionForm question={currentQuestion} />}
           {allowNav && <Navbar answers={answers} userId={userId} />}
