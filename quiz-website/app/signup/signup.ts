@@ -9,6 +9,7 @@ export const handleSignup = async (data: z.infer<typeof signupSchema>) => {
 
   const validatedFields = signupSchema.safeParse(data);
   if (!validatedFields.success) {
+    console.log(validatedFields.error.errors);
     return { errors: validatedFields.error.errors };
   }
 
@@ -38,8 +39,7 @@ export const handleSignup = async (data: z.infer<typeof signupSchema>) => {
 
     if (!user) throw "Error while creating user. Please try again"
     else await sendWelcomeEmail(email, name);
-
-  } catch (error) {
+  } catch (error: any) {
     return { error };
   }
 

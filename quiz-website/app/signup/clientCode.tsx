@@ -87,7 +87,7 @@ function SignupForm() {
             if (res.error === "User already exists with given email")
               setErrors((prev) => ({ ...prev, email: "User already exists with given email" }));
             else
-              setErrors((prev) => ({ ...prev, password: "Invalid Credentials" }));
+              setErrors((prev) => ({ ...prev, year: "Invalid Credentials" }));
           }
           return;
         }
