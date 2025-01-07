@@ -30,7 +30,7 @@ prisma.question.findMany({
 }).then(res => questions = res);
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://quiz-app-sable-ten.vercel.app', 'hello.ieee-jaduniv.in'],
+  origin: ['http://localhost:3000', 'https://quiz-app-sable-ten.vercel.app', 'https://hello.ieee-jaduniv.in'],
   credentials: true,
   optionSuccessStatus: 200
 }
