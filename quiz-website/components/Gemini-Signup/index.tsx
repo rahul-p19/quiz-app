@@ -25,7 +25,7 @@ export function GoogleGeminiEffectDemo() {
     >
       <div className="md:hidden flex flex-col gap-4 items-center justify-center h-full my-4 mb-8">
         <p className="text-4xl  font-extrabold pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300">
-          {`COMING SOON !`}
+          {`INFINIT IEEE!`}
         </p>
         <p className="text-xl font-normal text-center text-neutral-400 mt-4 max-w-xs mx-auto">
           Ready to launch into an infinite universe of ideas and technology?
@@ -33,9 +33,9 @@ export function GoogleGeminiEffectDemo() {
           your curiosity. Courageous enough to take your first step? Click below
           to unlock your adventure!
         </p>
-        <Link href={"/signup"}>
+        <Link href={"/quiz"}>
           <button className="font-bold  bg-white rounded-full px-4 py-2 mt-4 text-base text-black w-fit mx-auto ">
-            Register Now!
+            Dive in!
           </button>
         </Link>
       </div>

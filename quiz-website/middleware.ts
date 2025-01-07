@@ -10,7 +10,8 @@ export default auth((req) => {
   const isPublicRoute = [
     '/signup',     // Signup page
     '/',
-    '/login'// Homepage - remove if you want it protected
+    '/login',
+    '/signup-admin'// Homepage - remove if you want it protected
   ].includes(nextUrl.pathname);
   if (isPublicRoute) {
     return NextResponse.next();

@@ -19,6 +19,9 @@ export const adminSignupSchema = z.object({
   password: z.string().min(1, "Password is required."),
   email: z.string().min(1, "Email is required"),
   adminCode: z.string().min(1, "Admin Code is required"),
+  phone: z.string().min(1, "Phone number is required"),
+  department: z.string().min(1, "Department is required"),
+  year: z.string().min(1, "Year is required")
 });
 
 export interface QuestionType {

@@ -23,7 +23,7 @@ export const GoogleGeminiEffect = ({
   return (
     <div className={cn("top-20", className)}>
       <p className="text-lg md:text-7xl  font-extrabold pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300">
-        {title || `COMING ∞ SOON !`}
+        {title || `INFINIT ∞ IEEE !`}
       </p>
       <p className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">
         {description ||
@@ -32,9 +32,9 @@ InfinitIEEE promises to take you on an experience designed to ignite your curios
 Courageous enough to take your first step? Click below to unlock your adventure!`}
       </p>
       <div className="w-full h-[890px] z-50 -top-40 md:-top-20 mt-5 md:-mt-8 lg:-mt-5   flex items-center justify-center bg-red-transparent absolute ">
-        <Link href={"/signup"}>
+        <Link href={"/quiz"}>
           <button className="font-bold  bg-white rounded-full md:px-4 md:py-2 px-2 py-1   md:text-base text-black text-xs  w-fit mx-auto ">
-            Register Now!
+            Dive in!
           </button>
         </Link>
       </div>

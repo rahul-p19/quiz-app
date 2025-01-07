@@ -56,17 +56,18 @@ function LoginForm() {
   }
 
   return (
-    <form className='flex flex-col gap-y-6 mt-6' onSubmit={handleSubmit}>
+    <form className='w-full flex flex-col gap-y-6 mt-6' onSubmit={handleSubmit}>
+      <h2 className="text-4xl font-semibold w-full text-center">Login</h2>
       <div className='flex flex-col'>
-        <input type="text" placeholder='Email' className='bg-transparent text-accent placeholder:text-sm font-opensans border-b-accent border-b px-2 outline-none' value={loginData.email} onChange={e => handleChange(e, "email")} />
+        <input type="text" placeholder='Email' className='bg-transparent text-white placeholder:text-sm font-opensans border-b-gray-500 focus:border-b-white border-b px-2 outline-none' value={loginData.email} onChange={e => handleChange(e, "email")} />
         <p className='text-red-500 text-sm'>{errors.email ?? ''}</p>
       </div>
       <div className='flex flex-col'>
-        <input type="password" placeholder='Password' className='bg-transparent text-accent placeholder:text-sm font-opensans border-b-accent border-b px-2 outline-none text-lg' value={loginData.password} onChange={e => handleChange(e, "password")} />
+        <input type="password" placeholder='Password' className='bg-transparent text-white placeholder:text-sm font-opensans border-b-gray-500 border-b focus:border-b-white px-2 outline-none text-lg ' value={loginData.password} onChange={e => handleChange(e, "password")} />
         <p className='text-red-500 text-sm'>{errors.password ?? ''}</p>
       </div>
-      <button type="submit" className='text-white font-opensans px-3 py-1 my-4 rounded-sm w-1/2 self-center'>{buttonText}</button>
-      <div className='flex gap-4'>
+      <button type="submit" className='bg-white text-black font-medium font-opensans px-3 py-1 my-4 rounded-sm w-1/2 self-center'>{buttonText}</button>
+      <div className='flex text-center text-sm gap-4 w-full justify-between'>
         <p>Don&apos;t have an account?</p>
         <Link href="/signup">Sign Up</Link>
       </div>
