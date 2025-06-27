@@ -121,7 +121,7 @@ function Admin() {
                   <input
                     type="text"
                     name={`option${opt}`}
-                    // @ts-ignore
+                    // @ts-expect-error: addFormData is indexed by option keys dynamically
                     value={addFormData[`option${opt}`]}
                     onChange={handleAddChange}
                     placeholder={`Enter option ${opt}`}
