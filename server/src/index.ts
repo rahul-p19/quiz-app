@@ -27,7 +27,7 @@ prisma.question.findMany({
     optiond: true,
     marks: true
   }
-}).then(res => questions = res);
+}).then((res:Question[]) => questions = res);
 
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://quiz-app-sable-ten.vercel.app', 'https://hello.ieee-jaduniv.in'],

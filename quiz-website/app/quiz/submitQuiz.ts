@@ -1,5 +1,6 @@
 "use server"
-import { db } from "@/prisma/client";
+import { producer } from "@/lib/kafka";
+//import { db } from "@/prisma/client";
 import { QuestionType } from "@/schemas";
 
 interface validAnswerType {
@@ -12,16 +13,16 @@ interface validAnswerType {
 export default async function submitQuiz(answers: string[], userId: string, allQuestions: QuestionType[] | undefined) {
   if (!allQuestions) return { ok: false, msg: "Error in submission" };
   try {
-    const userData = await db.user.findFirst({
-      where: {
-        id: userId
-      },
-      select: {
-        quizSubmitted: true
-      }
-    });
+    // const userData = await db.user.findFirst({
+    //   where: {
+    //     id: userId
+    //   },
+    //   select: {
+    //     quizSubmitted: true
+    //   }
+    // });
 
-    if (!userData || userData.quizSubmitted) return { ok: false, msg: "User has already submitted" }
+    // if (!userData || userData.quizSubmitted) return { ok: false, msg: "User has already submitted" }
 
     let validAnswers: validAnswerType[] = [];
 
@@ -37,9 +38,9 @@ export default async function submitQuiz(answers: string[], userId: string, allQ
       }
     });
 
-    await db.answer.createMany({
-      data: validAnswers
-    });
+    // await db.answer.createMany({
+    //   data: validAnswers
+    // });
 
     let points = 0;
 
@@ -52,17 +53,35 @@ export default async function submitQuiz(answers: string[], userId: string, allQ
       }
     })
 
-    await db.user.update({
-      where: {
-        id: userId
-      },
-      data: {
-        quizSubmitted: true,
-        score: points
-      }
+    // Instead of directly updating DB, using Kafka to make the system scalable.
+    // await db.user.update({
+    //   where: {
+    //     id: userId
+    //   },
+    //   data: {
+    //     quizSubmitted: true,
+    //     score: points
+    //   }
+    // })
+
+    await producer.connect();
+
+    await producer.send({
+      topic: "quiz-submissions",
+      messages: [
+        {
+          key: userId,
+          value: JSON.stringify({
+            userId,
+            answers: validAnswers,
+            points,
+            submittedAt: new Date().toISOString()
+          })
+        }
+      ]
     })
 
-    return { ok: true, msg: "Quiz submitted successfully" };
+    return { ok: true, msg: "Quiz submitted successfully (queued for processing)" };
   } catch (err) {
     return { ok: false, msg: "Error in submitting quiz" };
   }
