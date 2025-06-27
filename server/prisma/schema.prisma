@@ -21,6 +21,7 @@ model Question {
   optionc    String
   optiond    String
   marks      Int
+  answers    Answer[]
 }
 
 enum UserRole {
