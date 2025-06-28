@@ -4,9 +4,11 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const KAFKA_CERT = Buffer.from(process.env.KAFKA_CA_CERT??"",'base64').toString('utf-8')
+
 const kafka = new Kafka({
     clientId: "quiz-consumer",
-    brokers: [`${process.env.KAFKA_URL}`],
+    brokers: [KAFKA_CERT],
     ssl:{
         ca: process.env.KAFKA_CA_CERT
     },

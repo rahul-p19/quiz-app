@@ -12,7 +12,7 @@ InfinitIEEE is a dynamic, full-stack real-time quiz application designed to deli
 * **Persistent Answers:** Your answers are securely saved and remain even if you refresh the page, ensuring a smooth user experience.
 * **Admin Panel:** Comprehensive control panel for quiz masters to manage quizzes, questions, and participants effortlessly.
 * **Role-Based Authentication:** Secure user and admin roles powered by **AuthJS**, capable of managing hundreds of registrations.
-* **Scalable Architecture:** Built with **Kafka** for Pub/Sub and message brokering, ensuring a fault-tolerant and scalable real-time system.
+* **Scalable Architecture:** Built with **Kafka** for message brokering, ensuring a fault-tolerant and scalable real-time system.
 
 ---
 
