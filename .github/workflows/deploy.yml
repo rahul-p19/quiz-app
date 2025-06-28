@@ -19,5 +19,5 @@ jobs:
             cd server
             npm i
             npx prisma generate
-            tsc
+            npx tsc
             pm2 restart 0
