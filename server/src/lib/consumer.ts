@@ -6,7 +6,15 @@ dotenv.config();
 
 const kafka = new Kafka({
     clientId: "quiz-consumer",
-    brokers: [`${process.env.KAFKA_URL}`]
+    brokers: [`${process.env.KAFKA_URL}`],
+    ssl:{
+        ca: process.env.KAFKA_CA_CERT
+    },
+    sasl: {
+        username: "avnadmin",
+        password: process.env.KAFKA_PASSWORD!,
+        mechanism: "plain"
+    }
 })
 
 const consumer = kafka.consumer({groupId: "submission-workers"});
