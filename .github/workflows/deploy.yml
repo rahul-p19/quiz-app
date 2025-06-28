@@ -16,6 +16,7 @@ jobs:
         run: |
             cd ${{secrets.GCE_PROJECT_DIRECTORY}}
             git pull origin main
+            cd server
             npm i
             npx prisma generate
             tsc
