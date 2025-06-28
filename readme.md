@@ -19,7 +19,7 @@ InfinitIEEE is a dynamic, full-stack real-time quiz application designed to deli
 ### 🚀 Tech Stack
 
 * **Frontend:** Next.js, TypeScript, Tailwind CSS
-* **Backend:** Express.js, Kafka (for Pub/Sub and Message Queue), Server-Sent Events (SSE)
+* **Backend:** Express.js, Kafka (for Message Queue), Server-Sent Events (SSE)
 * **Database:** PostgreSQL
 * **ORM:** Prisma
 * **Authentication:** AuthJS
