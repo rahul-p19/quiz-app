@@ -8,14 +8,14 @@ const KAFKA_CERT = Buffer.from(process.env.KAFKA_CA_CERT??"",'base64').toString(
 
 const kafka = new Kafka({
     clientId: "quiz-consumer",
-    brokers: [KAFKA_CERT],
+    brokers: [process.env.KAFKA_URL??""],
     ssl:{
-        ca: process.env.KAFKA_CA_CERT
+        ca: KAFKA_CERT
     },
     sasl: {
         username: "avnadmin",
         password: process.env.KAFKA_PASSWORD!,
-        mechanism: "plain"
+        mechanism: "scram-sha-256"
     }
 })
 
