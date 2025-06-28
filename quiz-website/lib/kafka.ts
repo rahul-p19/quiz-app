@@ -12,7 +12,7 @@ const getKafkaProducer = () => {
         sasl: {
             username: "avnadmin",
             password: process.env.KAFKA_PASSWORD!,
-            mechanism: "plain"
+            mechanism: "scram-sha-256"
         }
     })
     
