@@ -7,6 +7,8 @@ import Navbar from "./Navbar";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { handleSignOut } from "./logout";
 
+const SSE_URL = process.env.NEXT_PUBLIC_BACKEND_URL? `${process.env.NEXT_PUBLIC_BACKEND_URL}/questions` : "http://localhost:3000/questions";
+
 export default function ClientCode({ userId }: { userId: string }) {
   const [currentQuestion, setCurrentQuestion] = useState<QuestionType>({
     questionId: 0,
@@ -22,11 +24,10 @@ export default function ClientCode({ userId }: { userId: string }) {
   const [allowNav, setAllowNav] = useState<boolean>(false);
   const [questionLive, setQuestionLive] = useState<boolean>(false);
   const [connected, setConnected] = useState<boolean>(false);
-
-  const [answers, setAnswers] = useState<string[]>(["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
+  const [answers, setAnswers] = useState<string[]>(new Array(20).fill("")); // initialising the answers array with 20 blank options
+  // TODO: Refactor using either a map or atleast take the number of questions dynamically
 
   useEffect(() => {
-
     const localAnswers = localStorage.getItem("answers") ?? "";
     if (localAnswers !== "")
       setAnswers(JSON.parse(localAnswers));
@@ -39,8 +40,7 @@ export default function ClientCode({ userId }: { userId: string }) {
     if (localQuestionLive !== "")
       setQuestionLive(() => JSON.parse(localQuestionLive) === "true" ? true : false);
 
-    // const sse = new EventSource("http://localhost:3001/questions");
-    const sse = new EventSource(`${process.env.NEXT_PUBLIC_BACKEND_URL}/questions`);
+    const sse = new EventSource(SSE_URL);
 
     sse.onopen = () => {
       setConnected(true);
