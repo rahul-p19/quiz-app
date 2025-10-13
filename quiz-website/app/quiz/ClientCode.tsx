@@ -7,7 +7,9 @@ import Navbar from "./Navbar";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { handleSignOut } from "./logout";
 
-const SSE_URL = process.env.NEXT_PUBLIC_BACKEND_URL? `${process.env.NEXT_PUBLIC_BACKEND_URL}/questions` : "http://localhost:3000/questions";
+const SSE_URL = process.env.NEXT_PUBLIC_BACKEND_URL
+  ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/questions`
+  : "http://localhost:3000/questions";
 
 export default function ClientCode({ userId }: { userId: string }) {
   const [currentQuestion, setCurrentQuestion] = useState<QuestionType>({
@@ -18,7 +20,7 @@ export default function ClientCode({ userId }: { userId: string }) {
     optiond: "",
     correctOption: "a",
     statement: "",
-    marks: 0
+    marks: 0,
   });
 
   const [allowNav, setAllowNav] = useState<boolean>(false);
@@ -29,65 +31,60 @@ export default function ClientCode({ userId }: { userId: string }) {
 
   useEffect(() => {
     const localAnswers = localStorage.getItem("answers") ?? "";
-    if (localAnswers !== "")
-      setAnswers(JSON.parse(localAnswers));
+    if (localAnswers !== "") setAnswers(JSON.parse(localAnswers));
 
     const localAllowNav = localStorage.getItem("allowNav") ?? "false";
-    if (localAllowNav !== "")
-      setAllowNav(JSON.parse(localAllowNav));
+    if (localAllowNav !== "") setAllowNav(JSON.parse(localAllowNav));
 
     const localQuestionLive = localStorage.getItem("questionLive") ?? "false";
     if (localQuestionLive !== "")
-      setQuestionLive(() => JSON.parse(localQuestionLive) === "true" ? true : false);
+      setQuestionLive(() =>
+        JSON.parse(localQuestionLive) === "true" ? true : false
+      );
 
     const sse = new EventSource(SSE_URL);
 
     sse.onopen = () => {
       setConnected(true);
-    }
+    };
 
     sse.onerror = () => {
       setConnected(false);
-    }
+    };
 
     sse.onmessage = (ev: MessageEvent) => {
+      setConnected(sse.readyState === 1);
 
-      if (sse.readyState !== 1) setConnected(false);
-      else setConnected(true);
-
-      if (ev.data === "close") {
-        setQuestionLive(false);
-        localStorage.setItem("questionLive", "false");
-        console.log("Closing Connection to Quiz");
-        sse.close();
-      }
-
-      else if (ev.data === "allowNavigation") {
-        setQuestionLive(true);
-        localStorage.setItem("questionLive", "true");
-        setAllowNav(true);
-        localStorage.setItem("allowNav", "true");
-      }
-
-      else if (ev.data === "stopNavigation") {
-        setAllowNav(false);
-        localStorage.setItem("allowNav", "false");
-      }
-
-      else if (ev.data === "stopQuestions") {
-        setQuestionLive(false);
-        localStorage.setItem("questionLive", "false");
-      }
-
-      else if (ev.data === "allowQuestions") {
-        setQuestionLive(true);
-        localStorage.setItem("questionLive", "true");
-      }
-
-      else {
-        setCurrentQuestion(JSON.parse(ev.data));
-        setQuestionLive(true);
-        localStorage.setItem("questionLive", "true");
+      switch (ev.data) {
+        case "close":
+          setQuestionLive(false);
+          localStorage.setItem("questionLive", "false");
+          console.log("Closing Connection to Quiz");
+          sse.close();
+          break;
+        case "allowNavigation":
+          setQuestionLive(true);
+          localStorage.setItem("questionLive", "true");
+          setAllowNav(true);
+          localStorage.setItem("allowNav", "true");
+          break;
+        case "stopNavigation":
+          setAllowNav(false);
+          localStorage.setItem("allowNav", "false");
+          break;
+        case "stopQuestions":
+          setQuestionLive(false);
+          localStorage.setItem("questionLive", "false");
+          break;
+        case "allowQuestions":
+          setQuestionLive(true);
+          localStorage.setItem("questionLive", "true");
+          break;
+        default:
+          setCurrentQuestion(JSON.parse(ev.data));
+          setQuestionLive(true);
+          localStorage.setItem("questionLive", "true");
+          break;
       }
     };
   }, []);
@@ -95,14 +92,37 @@ export default function ClientCode({ userId }: { userId: string }) {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-b from-black/10 via-stone-900/50 to-blue-950/70">
-        <QuizContext.Provider value={{ answers, setAnswers, setQuestion: setCurrentQuestion, question: currentQuestion }}>
-          <p className={`fixed top-5 left-3 px-2 py-1 rounded-sm ${connected && (questionLive || allowNav) ? "bg-blue-950" : "bg-gray-400"}`}>{connected && (questionLive || allowNav) ? "Live" : "Offline"}</p>
+        <QuizContext.Provider
+          value={{
+            answers,
+            setAnswers,
+            setQuestion: setCurrentQuestion,
+            question: currentQuestion,
+          }}
+        >
+          <p
+            className={`fixed top-5 left-3 px-2 py-1 rounded-sm ${
+              connected && (questionLive || allowNav)
+                ? "bg-blue-950"
+                : "bg-gray-400"
+            }`}
+          >
+            {connected && (questionLive || allowNav) ? "Live" : "Offline"}
+          </p>
           <div className="flex justify-center items-center p-4">
-            <h1 className="text-4xl mr-2 sm:mr-0 md:text-6xl font-bold ">InfitIEEE</h1>
+            <h1 className="text-4xl mr-2 sm:mr-0 md:text-6xl font-bold ">
+              InfitIEEE
+            </h1>
           </div>
-          <button className='bg-red-600 rounded-sm px-2 py-1 fixed right-2 top-5' onClick={() => handleSignOut()}>Logout</button>
-          {(questionLive && currentQuestion.questionId !== 0) &&
-            <QuestionForm question={currentQuestion} />}
+          <button
+            className="bg-red-600 rounded-sm px-2 py-1 fixed right-2 top-5"
+            onClick={() => handleSignOut()}
+          >
+            Logout
+          </button>
+          {questionLive && currentQuestion.questionId !== 0 && (
+            <QuestionForm question={currentQuestion} />
+          )}
           {allowNav && <Navbar answers={answers} userId={userId} />}
         </QuizContext.Provider>
         <StarsBackground className="-z-10" />
