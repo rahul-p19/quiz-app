@@ -21,35 +21,4 @@ model Question {
   optionc    String
   optiond    String
   marks      Int
-  answers    Answer[]
-}
-
-enum UserRole {
-  USER
-  ADMIN
-}
-
-model User {
-  id            String   @id @default(cuid())
-  name          String
-  email         String
-  password      String
-  phone         String   @unique @default("0000000000")
-  department    String   @default("")
-  year          String   @default("")
-  createdAt     DateTime @default(now())
-  role          UserRole @default(USER)
-  score         Int      @default(0)
-  answers       Answer[]
-  quizSubmitted Boolean  @default(false)
-}
-
-model Answer {
-  answerId       String   @id @default(cuid())
-  selectedOption String
-  userId         String
-  user           User     @relation(fields: [userId], references: [id])
-  questionId     Int
-  question       Question @relation(fields: [questionId], references: [questionId])
-  submittedAt    DateTime @default(now())
 }
